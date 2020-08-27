@@ -334,6 +334,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     /* Seeding */
     Route::resource('seeding', 'backend\SeedingController');
+    Route::resource('seeding-fb-comments', 'backend\SeedingFbCommentsController');
 
     //Popup
     Route::resource('popup', 'backend\PopupController');
