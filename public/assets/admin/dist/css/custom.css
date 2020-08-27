@@ -1,0 +1,53 @@
+#holder.thumbnail, .thumbnail.thumbnail-clone, .thumbnail.holder-thumbnail {
+	max-height:200px;
+	margin: 15px auto;
+}
+.mt-1rem {
+	margin-top: 1rem;
+}
+.input-group #lfm.btn-primary, .input-group .lfm-mul.btn-primary,
+.input-group #lfm.btn-primary:hover, .input-group .lfm-mul.btn-primary:hover {
+	color: #fff;
+    cursor: pointer;
+}
+.hide {
+	display: none !important;
+}
+.remove-item__action {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+}
+.remove-item__action:hover {
+    background: #dc3545;
+    color: #fff;
+}
+.color-red {
+    color: red;
+}
+.box-image-chema{
+    width: 100%;
+}
+.select2-container{
+    width: 100% !important;
+}
+.select2-container .select2-selection--single{
+    height: 37px;
+    border: 1px solid #ced4da;
+}
+#list-option-product .card{
+    width: 100% !important;
+}
+#list-option-product h4{
+    margin-left: 5px;
+}
+.card-product-item{
+    width: 100% !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    color: #000;
+}

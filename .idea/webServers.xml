@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="64af5738-5abb-43bd-a40a-8b8cd212fb37" name="trinek.vn" url="http://trinek.vn">
+        <fileTransfer host="trinek.vn" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="bd7ea044-2a80-4dc9-8e7b-f05c124ebf78" name="dungcuthethao" url="http://dungcuthethaongoaitroi.vn">
+        <fileTransfer host="dungcuthethaongoaitroi.vn" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="575aa029-0a2a-41c1-a265-f0a5ebbbdf05" name="sodo" url="http://thutucsangtensodo.vn">
+        <fileTransfer host="thutucsangtensodo.vn" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="2f719eb0-226e-417f-99ae-969042741196" name="green" url="http://greenteccons.com">
+        <fileTransfer host="greenteccons.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="e164f665-3177-426e-8a13-5749dd0d3cee" name="maybay" url="http://vemaybayremoingay.vn">
+        <fileTransfer host="vemaybayremoingay.vn" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="86e4c447-ea53-4deb-86c0-acdcfccf368b" name="slife" url="http://slifegym.vn">
+        <fileTransfer host="slifegym.vn" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="6d41cf71-901d-421e-ada1-64ba52dfcf65" name="giathongcong" url="http://giathongcongnghet.com">
+        <fileTransfer host="giathongcongnghet.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="17ee7a61-5a28-4325-bdcf-821f3ece4e35" name="greenteccons.com" url="http://greenteccons.com">
+        <fileTransfer host="greenteccons.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="3eaa20d9-e40b-4e13-a07a-5799baebcc7f" name="thutucsangtensod" url="http://thutucsangtensodo.vn">
+        <fileTransfer host="thutucsangtensodo.vn" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="bb9d0770-be32-4ab2-b592-c6c8ea901b33" name="vemay bay" url="http://vemaybayremoingay.vn">
+        <fileTransfer host="vemaybayremoingay.vn" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
