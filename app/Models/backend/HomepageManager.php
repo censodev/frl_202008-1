@@ -64,6 +64,17 @@ class HomepageManager extends Model
         'images_partner',
         'description_partner',
         'related_partner',
+
+        'title_why',
+        'content_why',
+        'why_title',
+        'why_icon',
+        'why_description',
+
+        'title_product_sale',
+        'content_product_sale',
+        'related_product_sale',
+
         'created_by',
         'updated_by'
     ];

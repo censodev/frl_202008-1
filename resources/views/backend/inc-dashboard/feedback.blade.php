@@ -22,7 +22,7 @@
 		  </div>
 
 
-            <div id="holder-feedback" class="thumbnail holder-thumbnail text-center">
+            {{-- <div id="holder-feedback" class="thumbnail holder-thumbnail text-center">
                 @if( !empty( $home_default->images_feedback ) )
                     <img src="{{ $home_default->images_feedback }}" style="height: 5rem;">
                 @endif
@@ -34,7 +34,7 @@
 			  </a>
 			</span>
                 <input id="thumbnail-feedback" class="form-control" type="text" name="images_feedback" value="{{ $home_default->images_feedback }}">
-            </div>
+            </div> --}}
 
 
 		  <div class="form-group">

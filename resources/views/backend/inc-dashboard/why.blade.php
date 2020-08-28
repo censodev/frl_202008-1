@@ -26,14 +26,14 @@
 			  <img src="{{ $home_default->images_why }}" style="height: 5rem;">
 			@endif
 		  </div>
-		  <div class="input-group">
+		  {{-- <div class="input-group">
 			<span class="input-group-btn">
 			  <a data-input="thumbnail-why" data-preview="holder-why" class="lfm-mul btn btn-primary">
 				<i class="fa fa-picture-o"></i> Ảnh Nền
 			  </a>
 			</span>
 			<input id="thumbnail-why" class="form-control" type="text" name="images_why" value="{{ $home_default->images_why }}">
-		  </div>
+		  </div> --}}
 
 		  <div class="form-group mt-3">
 			<label for="content_why">Nội Dung</label>
@@ -48,7 +48,7 @@
 			<div class="card-body pb-0">
 			  <div class="row d-flex align-items-stretch increment-why">
 
-				@if( !empty( $count_why ) )
+				@if( isset($why_title) )
 				  @foreach( $why_title as $key => $w_title )
 
 					<div class="col-12 col-sm-4 col-md-3 d-flex align-items-stretch @if( $key > 0 ) clone-why-cli @endif ">

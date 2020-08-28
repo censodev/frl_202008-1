@@ -15,7 +15,7 @@
 				<input type="text" class="form-control" name="title_endow" value="{{$home_default->title_endow ?? ''}}">
 			</div>
 
-            <div id="holder-endow" class="thumbnail holder-thumbnail text-center">
+            {{-- <div id="holder-endow" class="thumbnail holder-thumbnail text-center">
                 @if( !empty( $home_default->images_endow ) )
                     <img src="{{ $home_default->images_endow }}" style="height: 5rem;">
                 @endif
@@ -27,7 +27,7 @@
 			  </a>
 			</span>
                 <input id="thumbnail-endow" class="form-control" type="text" name="images_endow" value="{{ $home_default->images_endow }}">
-            </div>
+            </div> --}}
 			<div class="form-group">
 				<label>Mô tả</label>
 				<textarea class="form-control ckeditor" name="description_endow">

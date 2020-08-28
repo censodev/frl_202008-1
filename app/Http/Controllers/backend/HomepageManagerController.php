@@ -265,6 +265,7 @@ class HomepageManagerController extends Controller
             $related_hot_2  = !empty( $request->related_hot_2 ) ? Genratejsonarray( $request->related_hot_2 ) : '';
             $related_post  = !empty( $request->related_post ) ? Genratejsonarray( $request->related_post ) : '';
             $related_product_hot  = !empty( $request->related_product_hot ) ? Genratejsonarray( $request->related_product_hot ) : '';
+            $related_product_sale  = !empty( $request->related_product_sale ) ? Genratejsonarray( $request->related_product_sale ) : '';
             $related_endow  = !empty( $request->related_endow ) ? Genratejsonarray( $request->related_endow ) : '';
             $related_certify  = !empty( $request->related_certify ) ? Genratejsonarray( $request->related_certify ) : '';
             $related_tv  = !empty( $request->related_tv ) ? Genratejsonarray( $request->related_tv ) : '';
@@ -275,6 +276,10 @@ class HomepageManagerController extends Controller
             $funfact_number = !empty($request->funfact_number) ? Genratejsonarray($request->funfact_number): "";
             $funfact_icon = !empty($request->funfact_icon) ? Genratejsonarray($request->funfact_icon): "";
             $funfact_description = !empty($request->funfact_description) ? Genratejsonarray($request->funfact_description): "";
+
+            $why_title = !empty($request->why_title) ? Genratejsonarray($request->why_title): "";
+            $why_icon = !empty($request->why_icon) ? Genratejsonarray($request->why_icon): "";
+            $why_description = !empty($request->why_description) ? Genratejsonarray($request->why_description): "";
 
             $services_name = !empty($request->services_name) ? Genratejsonarray($request->services_name): "";
             $services_url = !empty($request->services_url) ? Genratejsonarray($request->services_url): "";
@@ -336,6 +341,17 @@ class HomepageManagerController extends Controller
                 'images_partner'               => $request->images_partner,
                 'description_partner'          => $request->description_partner,
                 'related_partner'              => $related_partner,
+
+                'title_why'                     => $request->title_why,
+                'content_why'                   => $request->content_why,
+                'why_title'                     => $why_title,
+                'why_icon'                      => $why_icon,
+                'why_description'               => $why_description,
+
+                'title_product_sale'            => $request->title_product_sale,
+                'content_product_sale'          => $request->content_product_sale,
+                'related_product_sale'          => $related_product_sale,
+
                 'updated_by'                    => $user_id,
             ];
             try{

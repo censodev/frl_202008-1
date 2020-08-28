@@ -21,7 +21,7 @@
 			</div>
 		  </div>
 
-		  <div id="holder-service" class="thumbnail holder-thumbnail text-center">
+		  {{-- <div id="holder-service" class="thumbnail holder-thumbnail text-center">
 			@if( !empty( $home_default->images_service ) )
 			  <img src="{{ $home_default->images_service }}" style="height: 5rem;">
 			@endif
@@ -33,7 +33,8 @@
 			  </a>
 			</span>
 			<input id="thumbnail-service" class="form-control" type="text" name="images_service" value="{{ $home_default->images_service }}">
-		  </div>
+		  </div> --}}
+		  
 		  <div class="form-group mt-3">
 			<label for="content_service">Nội Dung</label>
 			<textarea id="content_service" name="content_service" class="form-control ckeditor-lfm" rows="4">{!! $home_default->content_service ?? old('content_service') !!}</textarea>

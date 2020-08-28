@@ -21,7 +21,7 @@
 			</div>
 		  </div>
 
-		  <div id="holder-funfact" class="thumbnail holder-thumbnail text-center">
+		  {{-- <div id="holder-funfact" class="thumbnail holder-thumbnail text-center">
 			@if( !empty( $home_default->images_funfact ) )
 			  <img src="{{ $home_default->images_funfact }}" style="height: 5rem;">
 			@endif
@@ -33,7 +33,7 @@
 			  </a>
 			</span>
 			<input id="thumbnail-funfact" class="form-control" type="text" name="images_funfact" value="{{ $home_default->images_funfact }}">
-		  </div>
+		  </div> --}}
 
 		  <div class="form-group mt-3">
 			<label for="content_funfact">Nội Dung</label>

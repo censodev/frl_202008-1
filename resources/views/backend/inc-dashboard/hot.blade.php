@@ -2,7 +2,7 @@
 	<div class="col-12">
 	  <div class="card card-primary">
 		<div class="card-header">
-		  <h3 class="card-title">Section Tranh Treo Tường</h3>
+		  <h3 class="card-title">Section Danh Mục Nổi Bật</h3>
 		  <div class="card-tools">
 			<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
 			  <i class="fas fa-minus"></i></button>
@@ -16,7 +16,7 @@
 			</div>
 
 
-            <div id="holder-hot" class="thumbnail holder-thumbnail text-center">
+            {{-- <div id="holder-hot" class="thumbnail holder-thumbnail text-center">
                 @if( !empty( $home_default->images_hot ) )
                     <img src="{{ $home_default->images_hot }}" style="height: 5rem;">
                 @endif
@@ -28,7 +28,7 @@
 			  </a>
 			</span>
                 <input id="thumbnail-hot" class="form-control" type="text" name="images_hot" value="{{ $home_default->images_hot }}">
-            </div>
+            </div> --}}
 
 			<div class="form-group">
 				<label>Mô tả</label>
@@ -37,7 +37,7 @@
 				</textarea>
 			</div>
 		  <div class="form-group block-search-appliesto">
-			<label for="seo_title">Chọn Tranh Treo Tường</label><br/>
+			<label for="seo_title">Chọn Danh Mục Nổi Bật</label><br/>
 			<button class="btn btn-info hot_search" type="button" data-toggle="modal" data-target="#modal-lg-hot" search="inHot" is-append="0"><i class="fas fa-search"></i> Tìm kiếm</button>
 		  </div>
 		  <div class="form-group">

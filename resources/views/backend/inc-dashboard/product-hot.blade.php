@@ -21,7 +21,7 @@
 			</div>
 		  </div>
 
-		  <div id="holder-product-hot" class="thumbnail holder-thumbnail text-center">
+		  {{-- <div id="holder-product-hot" class="thumbnail holder-thumbnail text-center">
 			@if( !empty( $home_default->images_product_hot ) )
 			  <img src="{{ $home_default->images_product_hot }}" style="height: 5rem;">
 			@endif
@@ -33,7 +33,7 @@
 			  </a>
 			</span>
 			<input id="thumbnail-product-hot" class="form-control" type="text" name="images_product_hot" value="{{ $home_default->images_product_hot }}">
-		  </div>
+		  </div> --}}
 
 		  <div class="form-group mt-3">
 			<label for="content_product_hot">Nội Dung</label>

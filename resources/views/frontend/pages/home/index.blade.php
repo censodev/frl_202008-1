@@ -21,21 +21,26 @@
 
         @php
             $related_sliders              = $data['related_sliders'];
-            $related_partners              = $data['related_partners'];
+            // $related_partners              = $data['related_partners'];
             $related_hots              = $data['related_hots'];
             $related_products_hot       = $data['related_products_hot'];
-            $related_hot2s              = $data['related_hot2s'];
+            $related_products_sale       = $data['related_products_sale'];
+            // $related_hot2s              = $data['related_hot2s'];
             $related_posts              = $data['related_posts'];
             $related_endows              = $data['related_endows'];
-            $related_certifies              = $data['related_certifies'];
+            // $related_certifies              = $data['related_certifies'];
 
-            $related_tvs                    = $data['related_tvs'];
-            $related_newspapers                    = $data['related_newspapers'];
+            // $related_tvs                    = $data['related_tvs'];
+            // $related_newspapers                    = $data['related_newspapers'];
             $feedbacks                    = $data['feedbacks'];
 
             $funfact_number         = json_decode( $home_default->funfact_number );
             $funfact_icon         = json_decode( $home_default->funfact_icon );
             $funfact_description    = json_decode( $home_default->funfact_description );
+
+            $why_title         = json_decode( $home_default->why_title );
+            $why_icon         = json_decode( $home_default->why_icon );
+            $why_description    = json_decode( $home_default->why_description );
 
             $services_name         = json_decode( $home_default->services_name );
             $services_url         = json_decode( $home_default->services_url );
@@ -53,12 +58,22 @@
             @include('frontend.pages.home.partial.counter')
             <!-- End counter Section -->
 
+            {{-- Introduce --}}
+            @include('frontend.pages.home.partial.introduce')
+
+            {{-- Why choose --}}
+            @include('frontend.pages.home.partial.why')
+
+            <!-- dịch vụ Section -->
+            @include('frontend.pages.home.partial.service')
+            <!-- End dịch vụ Section -->
+
             <!-- danh mục nổi bật Section -->
             @include('frontend.pages.home.partial.category-hot')
             <!-- End danh mục nổi bật Section -->
 
             <!-- danh mục nổi bật Section -->
-            @include('frontend.pages.home.partial.category-hot-2')
+            {{-- @include('frontend.pages.home.partial.category-hot-2') --}}
             <!-- End danh mục nổi bật Section -->
 
             <!-- danh mục nổi bật Section -->
@@ -66,31 +81,38 @@
             <!-- End danh mục nổi bật Section -->
 
             <!-- danh mục nổi bật Section -->
+            @include('frontend.pages.home.partial.product-sale')
+            <!-- End danh mục nổi bật Section -->
+
+            <!-- danh mục nổi bật Section -->
             @include('frontend.pages.home.partial.post-hot')
             <!-- End danh mục nổi bật Section -->
 
-            <!-- endow Section -->
-            @include('frontend.pages.home.partial.endow')
-            <!-- End endow Section -->
-
-            <!-- dịch vụ Section -->
-            @include('frontend.pages.home.partial.service')
-            <!-- End dịch vụ Section -->
-
-            <!-- chứng nhận Section -->
-            @include('frontend.pages.home.partial.certify')
-            <!-- End chứng nhận Section -->
-
-            <!-- dịch vụ Section -->
-            @include('frontend.pages.home.partial.tv-new')
-            <!-- End dịch vụ Section -->
+            <!-- danh mục nổi bật Section -->
+            @include('frontend.pages.home.partial.post-hot')
+            <!-- End danh mục nổi bật Section -->
 
             <!-- Cảm Nhận Section -->
             @include('frontend.pages.home.partial.feedback')
             <!-- End cảm nhận Section -->
 
+            <!-- endow Section -->
+            @include('frontend.pages.home.partial.endow')
+            <!-- End endow Section -->
+
+            {{-- Fb cmt --}}
+            @include('frontend.pages.home.partial.fb-comments')
+
+            <!-- chứng nhận Section -->
+            {{-- @include('frontend.pages.home.partial.certify') --}}
+            <!-- End chứng nhận Section -->
+
+            <!-- dịch vụ Section -->
+            {{-- @include('frontend.pages.home.partial.tv-new') --}}
+            <!-- End dịch vụ Section -->
+
             <!-- đối tác Section -->
-            @include('frontend.pages.home.partial.partner')
+            {{-- @include('frontend.pages.home.partial.partner') --}}
             <!-- End đối tác Section -->
 
 

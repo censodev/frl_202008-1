@@ -35,15 +35,16 @@
         @php
 
             $related_sliders              = $data['related_sliders'];
-            $related_partners              = $data['related_partners'];
+            // $related_partners              = $data['related_partners'];
             $related_hots              = $data['related_hots'];
-            $related_hot2s              = $data['related_hot2s'];
+            // $related_hot2s              = $data['related_hot2s'];
             $related_posts              = $data['related_posts'];
             $related_products_hot              = $data['related_products_hot'];
+            $related_products_sale      = $data['related_products_sale'];
             $related_endows              = $data['related_endows'];
-            $related_certifies              = $data['related_certifies'];
-            $related_tvs                    = $data['related_tvs'];
-            $related_newspapers                    = $data['related_newspapers'];
+            // $related_certifies              = $data['related_certifies'];
+            // $related_tvs                    = $data['related_tvs'];
+            // $related_newspapers                    = $data['related_newspapers'];
 
             $funfact_number         = json_decode( $home_default->funfact_number );
             $funfact_icon         = json_decode( $home_default->funfact_icon );
@@ -52,6 +53,10 @@
             $services_name         = json_decode( $home_default->services_name );
             $services_url         = json_decode( $home_default->services_url );
             $services_description    = json_decode( $home_default->services_description );
+
+            $why_title         = json_decode( $home_default->why_title );
+            $why_icon         = json_decode( $home_default->why_icon );
+            $why_description    = json_decode( $home_default->why_description );
         @endphp
 
         <form role="form" action="{{ route('homepageManager.update',$home_default->id) }}" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
@@ -75,17 +80,19 @@
 
           @include('backend.inc-dashboard.slider')
           @include('backend.inc-dashboard.counter')
-          @include('backend.inc-dashboard.hot')
-          @include('backend.inc-dashboard.hot-2')
-          @include('backend.inc-dashboard.post-hot')
-          @include('backend.inc-dashboard.product-hot')
-          @include('backend.inc-dashboard.endow')
+          @include('backend.inc-dashboard.why')
           @include('backend.inc-dashboard.service')
-          @include('backend.inc-dashboard.certify')
-          @include('backend.inc-dashboard.tv')
-          @include('backend.inc-dashboard.newspaper')
+          @include('backend.inc-dashboard.hot')
+          {{-- @include('backend.inc-dashboard.hot-2') --}}
+          @include('backend.inc-dashboard.product-hot')
+          @include('backend.inc-dashboard.product-sale')
+          @include('backend.inc-dashboard.post-hot')
           @include('backend.inc-dashboard.feedback')
-          @include('backend.inc-dashboard.partner')
+          @include('backend.inc-dashboard.endow')
+          {{-- @include('backend.inc-dashboard.certify') --}}
+          {{-- @include('backend.inc-dashboard.tv') --}}
+          {{-- @include('backend.inc-dashboard.newspaper') --}}
+          {{-- @include('backend.inc-dashboard.partner') --}}
 
           <div class="row">
             <div class="col-12">
