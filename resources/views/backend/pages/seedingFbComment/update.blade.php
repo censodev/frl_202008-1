@@ -74,8 +74,8 @@
                   </div>
 
                 <div id="holder" class="thumbnail text-center">
-                  @if( !empty( $seeding->images ) )
-                    <img src="{{ $seeding->images }}" style="height: 5rem;">
+                  @if( !empty( $seeding->image ) )
+                    <img src="{{ $seeding->image }}" style="height: 5rem;">
                   @endif
                 </div>
 
@@ -85,7 +85,7 @@
                       <i class="fa fa-picture-o"></i> Chọn Logo Đại Diện
                     </a>
                   </span>
-                  <input id="thumbnail" class="form-control" type="text" name="images" value="{{ $seeding->images }}" required oninvalid="this.setCustomValidity('Vui lòng chọn logo đại diện.')" oninput="setCustomValidity('')">
+                  <input id="thumbnail" class="form-control" type="text" name="image" value="{{ $seeding->image }}" required oninvalid="this.setCustomValidity('Vui lòng chọn logo đại diện.')" oninput="setCustomValidity('')">
                 </div>
 
                 <div class="row mt-1rem">

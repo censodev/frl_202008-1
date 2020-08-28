@@ -65,11 +65,11 @@
 
                   @foreach($seeding as $key => $item)
                     @php
-                      $images = $item->images ?? asset('assets/admin/dist/img/no_image.png');
+                      $image = $item->image ?? asset('assets/admin/dist/img/no_image.png');
                     @endphp
                     <tr>
                       <td> {{ ($key + 1) }} </td>
-                      <td> <img style="width:85px; margin: 0 auto" src="{{ $images }}"> </td>
+                      <td> <img style="width:85px; margin: 0 auto" src="{{ $image }}"> </td>
                       <td>
                         <a href="{{ route('seeding-fb-comments.edit',$item->id) }}"> {{ $item->name }} </a>
                       </td>

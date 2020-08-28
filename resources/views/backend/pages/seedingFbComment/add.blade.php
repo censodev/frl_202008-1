@@ -76,7 +76,7 @@
                       <i class="fa fa-picture-o"></i> Chọn Logo Đại Diện
                     </a>
                   </span>
-                  <input id="thumbnail" class="form-control" type="text" name="images" required oninvalid="this.setCustomValidity('Vui lòng chọn logo đại diện.')" oninput="setCustomValidity('')">
+                  <input id="thumbnail" class="form-control" type="text" name="image" required oninvalid="this.setCustomValidity('Vui lòng chọn logo đại diện.')" oninput="setCustomValidity('')">
                 </div>
 
                 <div class="row mt-1rem">
