@@ -57,6 +57,12 @@
             $why_title         = json_decode( $home_default->why_title );
             $why_icon         = json_decode( $home_default->why_icon );
             $why_description    = json_decode( $home_default->why_description );
+
+            $video_hot_title         = json_decode( $home_default->video_hot_title );
+            $video_hot_embed         = json_decode( $home_default->video_hot_embed );
+
+            $album_hot_title         = json_decode( $home_default->album_hot_title );
+            $album_hot_image         = json_decode( $home_default->album_hot_image );
         @endphp
 
         <form role="form" action="{{ route('homepageManager.update',$home_default->id) }}" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
@@ -80,13 +86,16 @@
 
           @include('backend.inc-dashboard.slider')
           @include('backend.inc-dashboard.counter')
+          @include('backend.inc-dashboard.about')
           @include('backend.inc-dashboard.why')
           @include('backend.inc-dashboard.service')
           @include('backend.inc-dashboard.hot')
           {{-- @include('backend.inc-dashboard.hot-2') --}}
           @include('backend.inc-dashboard.product-hot')
           @include('backend.inc-dashboard.product-sale')
-          @include('backend.inc-dashboard.post-hot')
+          {{-- @include('backend.inc-dashboard.post-hot') --}}
+          @include('backend.inc-dashboard.video-hot')
+          @include('backend.inc-dashboard.album-hot')
           @include('backend.inc-dashboard.feedback')
           @include('backend.inc-dashboard.endow')
           {{-- @include('backend.inc-dashboard.certify') --}}
@@ -113,5 +122,6 @@
   <!-- Clone -->
   @include('backend.includes.clone-funfact')
   @include('backend.includes.clone-why')
+  @include('backend.includes.clone-video-hot')
 
 @endsection

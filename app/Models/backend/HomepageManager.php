@@ -75,6 +75,19 @@ class HomepageManager extends Model
         'content_product_sale',
         'related_product_sale',
 
+        'title_about',
+        'content_about',
+
+        'title_video_hot',
+        'content_video_hot',
+        'video_hot_title',
+        'video_hot_embed',
+
+        'title_album_hot',
+        'content_album_hot',
+        'album_hot_title',
+        'album_hot_image',
+
         'created_by',
         'updated_by'
     ];

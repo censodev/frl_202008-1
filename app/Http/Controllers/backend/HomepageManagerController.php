@@ -285,6 +285,11 @@ class HomepageManagerController extends Controller
             $services_url = !empty($request->services_url) ? Genratejsonarray($request->services_url): "";
             $services_description = !empty($request->services_description) ? Genratejsonarray($request->services_description): "";
 
+            $video_hot_title = !empty($request->video_hot_title) ? Genratejsonarray($request->video_hot_title): "";
+            $video_hot_embed = !empty($request->video_hot_embed) ? Genratejsonarray($request->video_hot_embed): "";
+
+            $album_hot_title = !empty($request->album_hot_title) ? Genratejsonarray($request->album_hot_title): "";
+            $album_hot_image = !empty($request->album_hot_image) ? Genratejsonarray($request->album_hot_image): "";
 
             $data = [
                 'title'                             => $request->title,
@@ -351,6 +356,19 @@ class HomepageManagerController extends Controller
                 'title_product_sale'            => $request->title_product_sale,
                 'content_product_sale'          => $request->content_product_sale,
                 'related_product_sale'          => $related_product_sale,
+
+                'title_about'                   => $request->title_about,
+                'content_about'                 => $request->content_about,
+
+                'title_video_hot'               => $request->title_video_hot,
+                'content_video_hot'             => $request->content_video_hot,
+                'video_hot_title'               => $video_hot_title,
+                'video_hot_embed'               => $video_hot_embed,
+
+                'title_album_hot'               => $request->title_album_hot,
+                'content_album_hot'             => $request->content_album_hot,
+                'album_hot_title'               => $album_hot_title,
+                'album_hot_image'               => $album_hot_image,
 
                 'updated_by'                    => $user_id,
             ];

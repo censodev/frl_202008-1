@@ -2,7 +2,7 @@
 	<div class="col-12">
 	  <div class="card card-primary">
 		<div class="card-header">
-		  <h3 class="card-title">Section Giới Thiệu</h3>
+		  <h3 class="card-title">Section Giới Thiệu Doanh Nghiệp</h3>
 		  <div class="card-tools">
 			<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
 			  <i class="fas fa-minus"></i></button>
@@ -21,7 +21,7 @@
 			</div>
 		  </div>
 
-		  <div id="holder-about" class="thumbnail holder-thumbnail text-center">
+		  {{-- <div id="holder-about" class="thumbnail holder-thumbnail text-center">
 			@if( !empty( $home_default->images_about ) )
 			  <img src="{{ $home_default->images_about }}" style="height: 5rem;">
 			@endif
@@ -33,9 +33,9 @@
 			  </a>
 			</span>
 			<input id="thumbnail-about" class="form-control" type="text" name="images_about" value="{{ $home_default->images_about }}">
-		  </div>
+		  </div> --}}
 
-		  <div class="row mt-3">
+		  {{-- <div class="row mt-3">
 			<div class="col-md-6">
 			  <div class="form-group">
 				<label for="title_image_about">Tiêu Đề Hình Ảnh</label>
@@ -49,19 +49,19 @@
 				<input type="text" id="alt_image_about" name="alt_image_about" placeholder="Nhập mô tả hình ảnh" class="form-control" value="{{ $home_default->alt_image_about ?? old('alt_image_about') }}">
 			  </div>
 			</div>
-		  </div>
+		  </div> --}}
 		  
-		  <div class="form-group">
+		  {{-- <div class="form-group">
 			<label for="content_about">Embed Video <span class="color-red">( Nhập video sẽ hiển thị video không hiển thị hành ảnh )</span></label>
 			<textarea id="video_about" name="video_about" class="form-control" rows="4">{!! $home_default->video_about ?? old('video_about') !!}</textarea>
-		  </div>
+		  </div> --}}
 
 		  <div class="form-group">
 			<label for="content_about">Nội Dung</label>
 			<textarea id="content_about" name="content_about" class="form-control ckeditor-lfm" rows="4">{!! $home_default->content_about ?? old('content_about') !!}</textarea>
 		  </div>
 
-		  <div class="row mt-3">
+		  {{-- <div class="row mt-3">
 			<div class="col-md-6">
 			  <div class="form-group">
 				<label for="title_button_about">Button Tiêu Đề</label>
@@ -75,7 +75,7 @@
 				<input type="text" id="button_link_about" name="button_link_about" placeholder="Nhập button đường dẫn" class="form-control" value="{{ $home_default->button_link_about ?? old('button_link_about') }}">
 			  </div>
 			</div>
-		  </div>
+		  </div> --}}
 
 		</div>
 		<!-- /.card-body -->

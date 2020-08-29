@@ -84,12 +84,23 @@ $(document).ready(function() {
 		});
 	});
 
+	// Clone Service
 	$('.btn-clone-services').on('click', function() {
 		var html = $(".clone-services-area").html();
       	$(".increment-services").append(html);
 
       	$('.btn-remove-service').on('click', function() {
 			$(this).parents(".clone-service-cli").remove();
+		});
+	});
+
+	/* Clone Video Hot */
+	$('.btn-clone-video-hot').on('click', function() {
+		var html = $(".area-clone-video-hot-cli").html();
+      	$(".increment-video-hot").append(html);
+
+      	$('.btn-remove-video-hot').on('click', function() {
+			$(this).parents(".clone-video-hot-cli").remove();
 		});
 	});
 

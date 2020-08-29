@@ -1,5 +1,5 @@
 @if( !empty( $home_default->title_product_hot ) || !empty( $home_default->content_product_hot ) || ( !empty( $related_products_hot ) && count( $related_products_hot ) > 0 ) )
-    <div class="ereaders-main-section ereaders-product-gridfull">
+    <div class="ereaders-main-section ereaders-product-gridfull" style="background:#fff">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

@@ -46,6 +46,9 @@
             $services_url         = json_decode( $home_default->services_url );
             $services_description    = json_decode( $home_default->services_description );
 
+            $video_hot_title         = json_decode( $home_default->video_hot_title );
+            $video_hot_embed         = json_decode( $home_default->video_hot_embed );
+
         @endphp
 
         <!-- Slider Section -->
@@ -59,7 +62,7 @@
             <!-- End counter Section -->
 
             {{-- Introduce --}}
-            @include('frontend.pages.home.partial.introduce')
+            @include('frontend.pages.home.partial.about')
 
             {{-- Why choose --}}
             @include('frontend.pages.home.partial.why')
@@ -85,11 +88,11 @@
             <!-- End danh mục nổi bật Section -->
 
             <!-- danh mục nổi bật Section -->
-            @include('frontend.pages.home.partial.post-hot')
+            @include('frontend.pages.home.partial.video-hot')
             <!-- End danh mục nổi bật Section -->
 
             <!-- danh mục nổi bật Section -->
-            @include('frontend.pages.home.partial.post-hot')
+            @include('frontend.pages.home.partial.album-hot')
             <!-- End danh mục nổi bật Section -->
 
             <!-- Cảm Nhận Section -->
