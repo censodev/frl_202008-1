@@ -289,7 +289,8 @@ class HomepageManagerController extends Controller
             $video_hot_embed = !empty($request->video_hot_embed) ? Genratejsonarray($request->video_hot_embed): "";
 
             $album_hot_title = !empty($request->album_hot_title) ? Genratejsonarray($request->album_hot_title): "";
-            $album_hot_image = !empty($request->album_hot_image) ? Genratejsonarray($request->album_hot_image): "";
+            $album_hot_images = !empty($request->album_hot_images) ? Genratejsonarray($request->album_hot_images): "";
+            $album_hot_alt_images = !empty($request->album_hot_alt_images) ? Genratejsonarray($request->album_hot_alt_images): "";
 
             $data = [
                 'title'                             => $request->title,
@@ -368,7 +369,8 @@ class HomepageManagerController extends Controller
                 'title_album_hot'               => $request->title_album_hot,
                 'content_album_hot'             => $request->content_album_hot,
                 'album_hot_title'               => $album_hot_title,
-                'album_hot_image'               => $album_hot_image,
+                'album_hot_images'              => $album_hot_images,
+                'album_hot_alt_images'          => $album_hot_alt_images,
 
                 'updated_by'                    => $user_id,
             ];

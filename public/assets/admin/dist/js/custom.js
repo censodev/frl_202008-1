@@ -104,6 +104,23 @@ $(document).ready(function() {
 		});
 	});
 
+	/* Clone Album Hot */
+	$('.btn-clone-album-hot').on('click', function() {
+		var count = $(this).data('count')
+		var html = $(".area-clone-album-hot-cli").html();
+		html = html.replace(/-album-hot-number/g, '-album-hot-' + count);
+		$(".increment-album-hot").append(html);
+		$('.btn-clone-album-hot').data('count', ++count)
+
+      	$('.btn-remove-album-hot').on('click', function() {
+			$(this).parents(".clone-album-hot-cli").remove();
+		});
+
+		$('[class*="lfm-mul"]').each(function() {
+	        $(this).filemanager('file');
+	    });
+	});
+
 	/* Checked Icon Default Social */
 	$('.form-social input[name=icon_default]').on('switchChange.bootstrapSwitch', function(event, state) {
 	    if (state)

@@ -49,6 +49,10 @@
             $video_hot_title         = json_decode( $home_default->video_hot_title );
             $video_hot_embed         = json_decode( $home_default->video_hot_embed );
 
+            $album_hot_title        = json_decode( $home_default->album_hot_title );
+            $album_hot_alt_images   = json_decode( $home_default->album_hot_alt_images );
+            $album_hot_images       = json_decode( $home_default->album_hot_images );
+
         @endphp
 
         <!-- Slider Section -->

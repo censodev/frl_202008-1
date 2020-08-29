@@ -62,7 +62,8 @@
             $video_hot_embed         = json_decode( $home_default->video_hot_embed );
 
             $album_hot_title         = json_decode( $home_default->album_hot_title );
-            $album_hot_image         = json_decode( $home_default->album_hot_image );
+            $album_hot_images         = json_decode( $home_default->album_hot_images );
+            $album_hot_alt_images     = json_decode( $home_default->album_hot_alt_images );
         @endphp
 
         <form role="form" action="{{ route('homepageManager.update',$home_default->id) }}" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
@@ -123,5 +124,6 @@
   @include('backend.includes.clone-funfact')
   @include('backend.includes.clone-why')
   @include('backend.includes.clone-video-hot')
+  @include('backend.includes.clone-album-hot')
 
 @endsection

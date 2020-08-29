@@ -86,7 +86,8 @@ class HomepageManager extends Model
         'title_album_hot',
         'content_album_hot',
         'album_hot_title',
-        'album_hot_image',
+        'album_hot_images',
+        'album_hot_alt_images',
 
         'created_by',
         'updated_by'
