@@ -1,3 +1,11 @@
+@php
+    use App\Models\backend\Slider;
+    use App\Models\backend\Product;
+    use App\Models\backend\Post;
+    use App\Models\backend\Newspaper;
+    use App\Models\backend\Tv;
+    use App\Models\backend\Endow;
+@endphp
 @extends($data->layout, [
     'title'             => $data['title'],
     "seo_title"         => $data['seo_title'],
@@ -12,97 +20,143 @@
 @endsection
 
 @section($data->content)
-
     @php
         $landingPage = $data['landingPage'];
     @endphp
 
     @if( $landingPage )
-
         @php
-            $related_sliders        = $data['related_sliders'];
-            $related_posts_service  = $data['related_posts_service'];
-			$related_products_hot  		= $data['related_products_hot'];
-			$related_products_sale  	= $data['related_products_sale'];
-			$related_products_selling  	= $data['related_products_selling'];
-            $related_galleries      = $data['related_galleries'];
-            $related_teams          = $data['related_teams'];
-            $related_posts          = $data['related_posts'];
-            $related_partners       = $data['related_partners'];
-            $feedbacks              = $data['feedbacks'];
-
-			$services_url           = $data['services_url'];
-            $services_description   = $data['services_description'];
-
-            $funfact_number         = json_decode( $landingPage->funfact_number );
-            $funfact_icon           = json_decode( $landingPage->funfact_icon );
-            $funfact_description    = json_decode( $landingPage->funfact_description );
-
-            $count_funfact_number = $count_funfact_description = 0;
-            if( !empty( $funfact_number ) && count( $funfact_number ) > 0 ) {
-                $count_funfact_number = count( $funfact_number );
-            }
-
-            if( !empty( $funfact_icon ) && count( $funfact_icon ) > 0 ) {
-                $count_funfact_icon = count( $funfact_icon );
-            }
-
-            if( !empty( $funfact_description ) && count( $funfact_description ) > 0 ) {
-                $count_funfact_description = count( $funfact_description );
-            }
-
-            $count_funfact = max($count_funfact_number, $count_funfact_number, $count_funfact_description);
-
-            $count_funfact = max($count_funfact_number, $count_funfact_icon, $count_funfact_description);
-
-            $why_title          = json_decode( $landingPage->why_title );
-            $why_icon           = json_decode( $landingPage->why_icon );
-            $why_description    = json_decode( $landingPage->why_description );
-
-            $count_why_title = $count_icon_title = $count_why_description = 0;
-            if( !empty( $why_title ) && count( $why_title ) > 0 ) {
-                $count_why_title = count( $why_title );
-            }
-
-            if( !empty( $why_icon ) && count( $why_icon ) > 0 ) {
-                $count_why_icon = count( $why_icon );
-            }
-
-            if( !empty( $why_description ) && count( $why_description ) > 0 ) {
-                $count_why_description = count( $why_description );
-            }
-
-            $count_why = max($count_why_title, $count_why_icon, $count_why_description);
+            $sections = $data['sections'];
         @endphp
 
-        <!-- Banner Section -->
-        @include('frontend.includes.banner')
-        <!-- End Banner Section -->
+        @include('frontend.pages.home.partial.slider')
+        <div class="ereaders-main-content ereaders-content-padding">
 
-    	<!-- About Section -->
-        @include('frontend.pages.landingpage.partial.about')
-        <!--End About Section -->
+        @if(!empty($sections) && count($sections) > 0)
+            @foreach($sections as $key => $section)
+                @php
+                    $type = $section->type;
+                    $Ids = $listItems = [];
+                    $Ids = json_decode($section->items,true);
+                @endphp
+                @if(isset($section->items) && !empty($section->items))
 
-        <!-- Post Services Section -->
-        @include('frontend.pages.landingpage.partial.post-services')
-        <!--End Post Services Section -->
+                    @if($type == 'article')
+                        @php
+                            $listItems              = Post::whereIn('id', $Ids)->where('status',1)->get();
+                        @endphp
+                        <div class="ereaders-main-section ereaders-blog-gridfull">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title">
+                                            <h2 class="bounceIn wow">{{ $section->name }}</h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $section->description !!}
+                                            </div>
+                                        </div>
+                                        <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
+                                            <ul class="row">
+                                                @if(!empty($listItems) && count($listItems) > 0)
+                                                    {!! render_posts($listItems) !!}
+                                                @endif
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
-        <!-- Why Section -->
-        @include('frontend.pages.landingpage.partial.why')
-        <!--End Why Section -->
+                    @if($type == 'product')
+                        @php
+                            $listItems              = Product::whereIn('id', $Ids)->where('status',1)->get();
+                        @endphp
+                        <div class="ereaders-main-section ereaders-hot-product">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title">
+                                            <h2 class="bounceIn wow">{{ $section->name }}</h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $section->description !!}
+                                            </div>
+                                        </div>
+                                        <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
+                                            <ul class="row" id="product-of-category">
+                                                @if(!empty($listItems) && count($listItems) > 0)
+                                                    {!! render_products($listItems) !!}
+                                                @endif
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
 
-        <!-- Counter Section -->
-        @include('frontend.pages.landingpage.partial.counter')
-        <!--End Counter Section -->
+                    @if($type == 'slider')
+                        @php
+                            $listItems              = Slider::whereIn('id', $Ids)->where('status',1)->get();
+                        @endphp
+                    @endif
 
-        <!-- Testimonial Section -->
-        @include('frontend.pages.landingpage.partial.testimonial')
-        <!--End Testimonial Section -->
+                    @if($type == 'newspaper')
+                        @php
+                            $listItems              = Newspaper::whereIn('id', $Ids)->where('status',1)->get();
+                        @endphp
 
-        <!-- Partner Section -->
-        @include('frontend.pages.landingpage.partial.partner')
-        <!--End Partner Section -->
 
+                    @endif
+
+                    @if($type == 'tv')
+                        @php
+                            $listItems              = Tv::whereIn('id', $Ids)->where('status',1)->get();
+                        @endphp
+                    @endif
+
+                    @if($type == 'endow')
+                        @php
+                            $listItems              = Endow::whereIn('id', $Ids)->where('status',1)->get();
+                        @endphp
+                        <div class="ereaders-main-section ereaders-service-gridfull">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title">
+                                            <h2 class="bounceIn wow">{{ $section->name }}</h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $section->description !!}
+                                            </div>
+                                        </div>
+                                        <div class="ereaders-service ereaders-service-grid fadeInUp wow">
+                                            <ul class="row">
+                                                @if(!empty($listItems) && count($listItems) > 0)
+                                                    @foreach($listItems as $key => $item)
+                                                        <li class="col-md-4">
+                                                            <div class="ereaders-service-grid-text">
+                                                                {!! $item->icon !!}
+                                                                <h5><a href="#">{{ $item->name }}</a></h5>
+                                                                {!! substr($item->description,0,160) !!}
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                @endif
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                @endif
+            @endforeach
+        @endif
+
+        </div>
     @endif
-
 @endsection

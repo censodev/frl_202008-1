@@ -308,6 +308,13 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
         'uses' 	=> 'backend\EndowController@searchRelative',
     ));
 
+    /* Hot Product */
+    Route::resource('hot_product', 'backend\HotProductController');
+
+    /* Sale Product */
+    Route::resource('sale_product', 'backend\SaleProductController');
+
+
     /* Banner */
     Route::resource('hot', 'backend\HotController');
     Route::any("/Hot/searchRelative" , array(
@@ -642,8 +649,8 @@ Route::get("{alias}" ,function($alias){
             3 => ['module' => 'Post','action' 	 => 'PostDetail'],
             4 => ['module' => 'Gallery','action' => 'index'],
             5 => ['module' => 'Product','action' => 'index'],
-            6 => ['module' => 'LandingPage','action' => 'LandingPageDetail'],
-            6 => ['module' => 'Guarantee','action' => 'index'],
+            6 => ['module' => 'LandingPage','action' => 'index'],
+            7 => ['module' => 'LandingPage','action' => 'LandingPageDetail']
         ];
         $activeModule   = $moduleAction[$action];
         $controllerName = 'App\Http\Controllers\frontend\\'.$activeModule['module'].'Controller@'. $activeModule['action'];

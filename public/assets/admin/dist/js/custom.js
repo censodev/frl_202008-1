@@ -54,6 +54,32 @@ $(document).ready(function() {
         });
     });
 
+
+    var count_section = 1;
+    var update_section_item = $('.btn-clone-section').data('count');
+    if( update_section_item ) {
+        count_section = update_section_item;
+    }
+
+    /* Clone section landingpage */
+    $('.btn-clone-section').on('click', function() {
+        var html = $(".area-clone-section-cli").html();
+
+        html	 = html.replace(/number/g, count_section);
+
+        $(".increment-section").append(html);
+
+        $('.btn-remove-section').on('click', function() {
+            $(this).parents(".clone-section-cli").remove();
+        });
+
+        $('[class*="lfm-mul"]').each(function() {
+            $(this).filemanager('file');
+        });
+
+        count_section++;
+    });
+
 	/* Clone Video */
 	$('.btn-clone-video').on('click', function() {
 		var html = $(".area-clone-video-cli").html();
@@ -222,6 +248,9 @@ function run_trigger() {
     $('.btn-remove-product').on('click', function() {
         $(this).parents(".clone-product-cli").remove();
     });
+    $('.btn-remove-section').on('click', function() {
+        $(this).parents(".clone-section-cli").remove();
+    });
 
 	$('.btn-remove-funfact').on('click', function() {
 		$(this).parents(".clone-funfact-cli").remove();
@@ -344,5 +373,32 @@ function run_trigger() {
 
     $(".begin_guarantee").datepicker({format: 'dd/mm/yyyy'});
     $(".end_guarantee").datepicker({format: 'dd/mm/yyyy'});
+
+
+    function capitalizeFirstLetter([ first, ...rest ], locale = navigator.language) {
+        return [ first.toLocaleUpperCase(locale), ...rest ].join('');
+    }
+    //chọn loại section landingpage
+    $(document.body).on('change', 'select[name="type[]"]', function() {
+        var type = $(this).val();
+        var div = $(this).closest('.section-item');
+        var button = div.find('button');
+        var ul = div.find('ul');
+        var li = ul.find('li');
+
+        li.remove();
+
+        var button_class = type + '_search';
+        var target = '#modal-lg-' + type;
+        var search = 'in' + capitalizeFirstLetter(type);
+        var ul_class = 'block-' + type + '-list';
+
+        button.removeClass("article_search product_search slider_search newspaper_search tv_search endow_search");
+        button.removeAttr('disabled');
+        button.addClass(button_class);
+        button.attr('data-target', target);
+        button.attr('search', search);
+        ul.addClass(ul_class);
+    });
 
 }

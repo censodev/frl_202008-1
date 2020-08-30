@@ -20,6 +20,7 @@ use Illuminate\Support\Collection;
 
 class LandingPageController extends Controller
 {
+    protected $limit = 12;
     private $layout  = 'frontend.layouts.';
     private $view    = 'frontend.pages.landingpage.';
     private $content = 'content';
@@ -31,111 +32,78 @@ class LandingPageController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(Request $request)
+    public function index(Request $request, $alias)
     {
-        echo "tb";
+        $data = new Collection();
+        $data->title   = 'List LandingPage';
+        $data->layout  = $this->layout.'page';
+        $data->view    = $this->view.'index';
+        $data->content = $this->content;
+
+        $page = $request->page && $request->page > 0 ? $request->page : 1;
+
+        $catCurrentIDS = $catIDS = [];
+
+        if($request->alias != null) {
+
+            $category = Category::where("alias",trim($alias))->first();
+
+            if(!$category) abort('404');
+
+            $data['list_landing'] = LandingPage::where("status", 1)->orderBy('id', 'DESC')->paginate($this->limit);
+
+            $logo = ConfigLogo::where("status",1)->get();
+            $logo->top = $logo->where("type",1)->first();
+
+            if( !empty( $category->images ) ) {
+                $cat_img = $category->images;
+            }elseif( !empty( $logo->top->images ) ) {
+                $cat_img = $logo->top->images;
+            }else {
+                $cat_img = asset('assets/client/dist/images/favicon.png');
+            }
+
+            $alias      = $request->alias;
+            $dataSeo    = ConfigSeo::where('status', 1)->first();
+            $seo_title          = $dataSeo->seo_title ?? '';
+            $seo_keywords       = $dataSeo->seo_keywords ?? '';
+            $seo_description    = $dataSeo->seo_description ?? '';
+
+            $data['category']        = $category;
+
+            $data['title']           = $category->title;
+            $data['og_image']        = $cat_img;
+            $data['og_url']          = $category->alias;
+            $data['seo_title']       = $category->seo_title ?? $seo_title;
+            $data['seo_keywords']    = $category->seo_keyword ?? $seo_keywords;
+            $data['seo_description'] = $category->seo_desciption ?? $seo_description ;
+
+            return View($data->view,compact('data'));
+
+        }else {
+            abort('404');
+        }
     }
 
     public function LandingPageDetail($alias = null)
     {
         $data = new Collection();
         $data->title = 'LandingPage Detail';
-        $data->layout = $this->layout . 'landing';
+        $data->layout = $this->layout . 'page';
         $data->view = $this->view . 'detail';
         $data->content = $this->content;
 
         if ($alias != null) {
-            $data['landingPage'] = LandingPage::findDetailbyalias($alias);
+            $landingPage = LandingPage::findDetailbyalias($alias);
+            $data['landingPage'] = $landingPage;
 
             $data['category_landing'] = Category::where('type', 6)
                 ->where('status', 1)
                 ->get();
 
-            if ($data['landingPage'] != null) {
-
-                $relatedSliderIds = $data['related_sliders'] = [];
-                if (isset($data['landingPage']->related_slider) && !empty($data['landingPage']->related_slider)) {
-
-                    $relatedSliderIds = json_decode($data['landingPage']->related_slider, true);
-                    $data['related_sliders'] = Slider::whereIn('id', $relatedSliderIds)
-                        ->where('status', 1)
-                        ->get();
-                }
-
-                $relatedPostServiceIds = $data['related_posts_service'] = [];
-                if (isset($data['landingPage']->services_name) && !empty($data['landingPage']->services_name)) {
-
-                    $data['services_url'] = json_decode($data['landingPage']->services_url, true);
-                    $data['services_description'] = json_decode($data['landingPage']->services_description, true);
-
-                    $data['related_posts_service'] = json_decode($data['landingPage']->services_name, true);
-                }
-
-                $relatedProductHotIds = $data['related_products_hot'] = [];
-                if (isset($data['landingPage']->related_product_hot) && !empty($data['landingPage']->related_product_hot)) {
-
-                    $relatedProductHotIds = json_decode($data['landingPage']->related_product_hot, true);
-                    $data['related_products_hot'] = Product::whereIn('id', $relatedProductHotIds)
-                        ->where('status', 1)
-                        ->get();
-                }
-
-                $relatedProductSaleIds = $data['related_products_sale'] = [];
-                if (isset($data['landingPage']->related_product_sale) && !empty($data['landingPage']->related_product_sale)) {
-
-                    $relatedProductSaleIds = json_decode($data['landingPage']->related_product_sale, true);
-                    $data['related_products_sale'] = Product::whereIn('id', $relatedProductSaleIds)
-                        ->where('status', 1)
-                        ->get();
-                }
-
-                $relatedProductSellingIds = $data['related_products_selling'] = [];
-                if (isset($data['landingPage']->related_product_selling) && !empty($data['landingPage']->related_product_selling)) {
-
-                    $relatedProductSellingIds = json_decode($data['landingPage']->related_product_selling, true);
-                    $data['related_products_selling'] = Product::whereIn('id', $relatedProductSellingIds)
-                        ->where('status', 1)
-                        ->get();
-                }
-
-                $relatedGalleryIds = $data['related_galleries'] = [];
-                if (isset($data['landingPage']->related_gallery) && !empty($data['landingPage']->related_gallery)) {
-
-                    $relatedGalleryIds = json_decode($data['landingPage']->related_gallery, true);
-                    $data['related_galleries'] = Gallery::whereIn('id', $relatedGalleryIds)
-                        ->where('status', 1)
-                        ->get();
-                }
-
-                $relatedTeamIds = $data['related_teams'] = [];
-                if (isset($data['landingPage']->related_team) && !empty($data['landingPage']->related_team)) {
-
-                    $relatedTeamIds = json_decode($data['landingPage']->related_team, true);
-                    $data['related_teams'] = Team::whereIn('id', $relatedTeamIds)
-                        ->where('status', 1)
-                        ->get();
-                }
-
-                $relatedPostIds = $data['related_posts'] = [];
-                if (isset($data['landingPage']->related_post) && !empty($data['landingPage']->related_post)) {
-
-                    $relatedPostIds = json_decode($data['landingPage']->related_post, true);
-                    $data['related_posts'] = Post::whereIn('id', $relatedPostIds)
-                        ->where('status', 1)
-                        ->get();
-                }
-
-                $relatedPartnerIds = $data['related_partners'] = [];
-                if (isset($data['landingPage']->related_partner) && !empty($data['landingPage']->related_partner)) {
-
-                    $relatedPartnerIds = json_decode($data['landingPage']->related_partner, true);
-                    $data['related_partners'] = Partner::whereIn('id', $relatedPartnerIds)
-                        ->where('status', 1)
-                        ->get();
-                }
-
-                $data['feedbacks'] = Feedback::listFeedback();
-
+            if ($landingPage != null) {
+                $sections = $landingPage->items()->orderBy("ordering", 'ASC')->get();
+                $data['sections'] = $sections;
             } else {
                 abort('404');
             }
@@ -154,7 +122,7 @@ class LandingPageController extends Controller
             $seo_keywords = $dataSeo->seo_keywords ?? '';
             $seo_description = $dataSeo->seo_description ?? '';
 
-            $data['title'] = $data['landingPage']->title ?? 'Trang Chủ';
+            $data['title'] = $landingPage->title ?? 'Trang Chủ';
             $data['og_image'] = $og_image;
             $data['og_url'] = url('/');
             $data['seo_title'] = $seo_title;

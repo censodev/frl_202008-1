@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Models\backend\Category;
 use App\Models\backend\LandingPage;
+use App\Models\backend\LandingPageItem;
 use App\Models\backend\Post;
 use App\Models\backend\Product;
 use App\Models\backend\Gallery;
@@ -25,6 +26,14 @@ class LandingPageController extends Controller
     protected $limit = 15;
     protected $image_service;
     protected $title = '';
+    protected $types = [
+        'article'   => 'Bài Viết',
+        'product'   => 'Sản Phẩm',
+        'slider'    => 'Slider',
+        'newspaper' => 'Báo Chí',
+        'tv'        => 'Truyền Hình',
+        'endow'     => 'Hậu Mãi',
+    ];
     private $keyword = '';
     private $layout  = 'backend.layouts.';
     private $view    = 'backend.pages.landingPage.';
@@ -78,8 +87,34 @@ class LandingPageController extends Controller
 
         $data['category_level'] = Category::getCategoryPostLevel();
 
+        $data['types'] = $this->types;
+
         return View($data->view,compact('data'));
 
+    }
+
+    public function render_items($type, $request)
+    {
+        if($type === 'slider'){
+            $items = !empty( $request->related_slider ) ? Genratejsonarray( $request->related_slider ) : '';
+        }
+        if($type === 'product'){
+            $items = !empty( $request->related_product ) ? Genratejsonarray( $request->related_product ) : '';
+        }
+        if($type === 'article'){
+            $items = !empty( $request->related_post ) ? Genratejsonarray( $request->related_post ) : '';
+        }
+        if($type === 'newspaper'){
+            $items = !empty( $request->related_newspaper ) ? Genratejsonarray( $request->related_newspaper ) : '';
+        }
+        if($type === 'tv'){
+            $items = !empty( $request->related_tv ) ? Genratejsonarray( $request->related_tv ) : '';
+        }
+        if($type === 'endow'){
+            $items = !empty( $request->related_endow ) ? Genratejsonarray( $request->related_endow ) : '';
+        }
+
+        return $items;
     }
 
     /**
@@ -101,89 +136,55 @@ class LandingPageController extends Controller
         }
         $alias = utf8tourl( $alias );
 
-        $related_slider  = !empty( $request->related_slider ) ? Genratejsonarray( $request->related_slider ) : '';
-        $related_post_service = !empty( $request->related_post_service ) ? Genratejsonarray( $request->related_post_service ) : '';
-        $why_title            = !empty( $request->why_title ) ? Genratejsonarray( $request->why_title ) : '';
-        $why_icon  	          = !empty( $request->why_icon ) ? Genratejsonarray( $request->why_icon ) : '';
-        $why_description      = !empty( $request->why_description ) ? Genratejsonarray( $request->why_description ) : '';
-        $related_product_hot  = !empty( $request->related_product_hot ) ? Genratejsonarray( $request->related_product_hot ) : '';
-        $related_product_sale = !empty( $request->related_product_sale ) ? Genratejsonarray( $request->related_product_sale ) : '';
-        $related_product_selling = !empty( $request->related_product_selling ) ? Genratejsonarray( $request->related_product_selling ) : '';
-        $funfact_number  = !empty( $request->funfact_number ) ? Genratejsonarray( $request->funfact_number ) : '';
-        $funfact_icon  	 = !empty( $request->funfact_icon ) ? Genratejsonarray( $request->funfact_icon ) : '';
-        $funfact_description = !empty( $request->funfact_description ) ? Genratejsonarray( $request->funfact_description ) : '';
-        $related_gallery = !empty( $request->related_gallery ) ? Genratejsonarray( $request->related_gallery ) : '';
-        $related_team    = !empty( $request->related_team ) ? Genratejsonarray( $request->related_team ) : '';
-        $related_post    = !empty( $request->related_post ) ? Genratejsonarray( $request->related_post ) : '';
-        $related_partner = !empty( $request->related_partner ) ? Genratejsonarray( $request->related_partner ) : '';
+        $data_section = [
+            'name'                      => $request->name,
+            'type'                      => $request->type,
+            'ordering'                  => $request->ordering,
+            'images'                    => $request->images,
+            'title_image'               => $request->title_image,
+            'alt_image'                 => $request->alt_image,
+            'images_mobile'             => $request->images_mobile,
+            'title_image_mobile'        => $request->title_image_mobile,
+            'alt_image_mobile'          => $request->alt_image_mobile,
+            'description'               => $request->description,
+        ];
 
         $data = [
-            'title'                 =>  $request->title,
-            'category_id'           =>  $request->category_id,
-            'alias'                 =>  $alias,
-            'images'                =>  $request->images,
-            'title_image'           =>  $request->title_image,
-            'alt_image'             =>  $request->alt_image,
-            'seo_title'             =>  $request->seo_title,
-            'seo_desciption'        =>  $request->seo_desciption,
-            'seo_keyword'           =>  $request->seo_keyword,
-            'related_slider'        =>  $related_slider,
-            'title_about'           =>  $request->title_about,
-            'images_about'          =>  $request->images_about,
-            'title_image_about'     =>  $request->title_image_about,
-            'alt_image_about'       =>  $request->alt_image_about,
-            'video_about'           =>  $request->video_about,
-            'content_about'         =>  $request->content_about,
-            'title_button_about'    =>  $request->title_button_about,
-            'button_link_about'     =>  $request->button_link_about,
-            'title_service'         =>  $request->title_service,
-            'images_service'        =>  $request->images_service,
-            'content_service'       =>  $request->content_service,
-            'related_post_service'  =>  $related_post_service,
-            'title_why'             =>  $request->title_why,
-            'content_why'           =>  $request->content_why,
-            'images_why'            =>  $request->images_why,
-            'why_title'             =>  $why_title,
-            'why_icon'        	    =>  $why_icon,
-            'why_description'       =>  $why_description,
-            'title_product_hot'     =>  $request->title_product_hot,
-            'images_product_hot'    =>  $request->images_product_hot,
-            'content_product_hot'   =>  $request->content_product_hot,
-            'related_product_hot'  	=>  $related_product_hot,
-            'title_product_sale'     =>  $request->title_product_sale,
-            'images_product_sale'    =>  $request->images_product_sale,
-            'content_product_sale'   =>  $request->content_product_sale,
-            'related_product_sale'  	=>  $related_product_sale,
-            'title_product_selling'     =>  $request->title_product_selling,
-            'images_product_selling'    =>  $request->images_product_selling,
-            'content_product_selling'   =>  $request->content_product_selling,
-            'related_product_selling'  	=>  $related_product_selling,
-            'title_funfact'         =>  $request->title_funfact,
-            'content_funfact'       =>  $request->content_funfact,
-            'images_funfact'        =>  $request->images_funfact,
-            'funfact_number'        =>  $funfact_number,
-            'funfact_icon'        	=>  $funfact_icon,
-            'funfact_description'   =>  $funfact_description,
-            'title_gallery'         =>  $request->title_gallery,
-            'related_gallery'       =>  $related_gallery,
-            'title_team'            =>  $request->title_team,
-            'content_team'       	=>  $request->content_team,
-            'images_team'           =>  $request->images_team,
-            'related_team'          =>  $related_team,
-            'title_feedback'        =>  $request->title_feedback,
-            'content_feedback'      =>  $request->content_feedback,
-            'images_feedback'       =>  $request->images_feedback,
-            'title_news'            =>  $request->title_news,
-            'images_news'           =>  $request->images_news,
-            'related_post'          =>  $related_post,
-            'title_partner'         =>  $request->title_partner,
-            'related_partner'       =>  $related_partner,
-            'created_by'            =>  $user_id,
-            'status'                =>  1,
+            'title'                         =>  $request->title,
+            'category_id'                   =>  $request->category_id,
+            'alias'                         =>  $alias,
+            'image_landing'                 =>  $request->image_landing,
+            'title_image_landing'           =>  $request->title_image_landing,
+            'alt_image_landing'             =>  $request->alt_image_landing,
+            'seo_title'                     =>  $request->seo_title,
+            'seo_desciption'                =>  $request->seo_desciption,
+            'seo_keyword'                   =>  $request->seo_keyword,
+            'created_by'                    =>  $user_id,
+            'status'                        =>  1,
         ];
 
         try{
             $create_landing = LandingPage::create( $data );
+
+            foreach($data_section['name'] as $key => $item){
+                $data_item = [
+                    'id_landing'            => $create_landing->id,
+                    'name'                  => $item,
+                    'type'                  => $data_section['type'][$key],
+                    'ordering'              => (int) $data_section['ordering'][$key],
+                    'images'                => $data_section['images'][$key],
+                    'title_image'           => $data_section['title_image'][$key],
+                    'alt_image'             => $data_section['alt_image'][$key],
+                    'images_mobile'         => $data_section['images_mobile'][$key],
+                    'title_image_mobile'    => $data_section['title_image_mobile'][$key],
+                    'alt_image_mobile'      => $data_section['alt_image_mobile'][$key],
+                    'description'           => $data_section['description'][$key],
+                    'created_by'            => $user_id,
+                    'status'                => 1,
+                ];
+                $data_item['items'] = $this->render_items($data_section['type'][$key], $request);
+                LandingPageItem::create( $data_item );
+            }
 
             if( $create_landing ) {
                 $data_url = [
@@ -233,6 +234,7 @@ class LandingPageController extends Controller
         $data->layout  = $this->layout.'index';
         $data->view    = $this->view.'update';
         $data->content = $this->content;
+        $data['types'] = $this->types;
 
         $error = 'Không tìm thấy dữ liệu về landingPage này. Vui lòng thử lại.';
 
@@ -241,105 +243,8 @@ class LandingPageController extends Controller
             $data['landingPage']           = $landingPage;
             $data['category_level'] = Category::getCategoryPostLevel();
 
-            $relatedSliderIds = $data['related_sliders'] = [];
-            if(isset($landingPage->related_slider) && !empty($landingPage->related_slider)) {
-
-                $relatedSliderIds           = json_decode($landingPage->related_slider,true);
-                $data['related_sliders']    = Slider::whereIn('id', $relatedSliderIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $relatedPostServiceIds = $data['related_posts_service'] = [];
-            if(isset($landingPage->related_post_service) && !empty($landingPage->related_post_service)) {
-
-                $relatedPostServiceIds           = json_decode($landingPage->related_post_service,true);
-                $data['related_posts_service']   = Post::whereIn('id', $relatedPostServiceIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $services_name = $data['services_name'] = [];
-            if(isset($landingPage->services_name) && !empty($landingPage->services_name)) {
-
-                $data['services_name']   = json_decode($landingPage->services_name,true);
-                $data['services_url']    = json_decode($landingPage->services_url,true);
-                $data['services_description'] = json_decode($landingPage->services_description,true);
-            }
-
-            $relatedProductHotIds = $data['related_products_hot'] = [];
-            if(isset($landingPage->related_product_hot) && !empty($landingPage->related_product_hot)) {
-
-                $relatedProductHotIds          = json_decode($landingPage->related_product_hot,true);
-                $data['related_products_hot']   = Product::whereIn('id', $relatedProductHotIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $relatedProductSaleIds = $data['related_products_sale'] = [];
-            if(isset($landingPage->related_product_sale) && !empty($landingPage->related_product_sale)) {
-
-                $relatedProductSaleIds          = json_decode($landingPage->related_product_sale,true);
-                $data['related_products_sale']   = Product::whereIn('id', $relatedProductSaleIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $relatedProductSellingIds = $data['related_products_selling'] = [];
-            if(isset($landingPage->related_product_selling) && !empty($landingPage->related_product_selling)) {
-
-                $relatedProductSellingIds          = json_decode($landingPage->related_product_selling,true);
-                $data['related_products_selling']   = Product::whereIn('id', $relatedProductSellingIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $relatedGalleryIds = $data['related_galleries'] = [];
-            if(isset($landingPage->related_gallery) && !empty($landingPage->related_gallery)) {
-
-                $relatedGalleryIds          = json_decode($landingPage->related_gallery,true);
-                $data['related_galleries']  = Gallery::whereIn('id', $relatedGalleryIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $relatedTeamIds = $data['related_teams'] = [];
-            if(isset($landingPage->related_team) && !empty($landingPage->related_team)) {
-
-                $relatedTeamIds             = json_decode($landingPage->related_team,true);
-                $data['related_teams']      = Team::whereIn('id', $relatedTeamIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $relatedPostIds = $data['related_posts'] = [];
-            if(isset($landingPage->related_post) && !empty($landingPage->related_post)) {
-
-                $relatedPostIds             = json_decode($landingPage->related_post,true);
-                $data['related_posts']      = Post::whereIn('id', $relatedPostIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $relatedPartnerIds = $data['related_partners'] = [];
-            if(isset($landingPage->related_partner) && !empty($landingPage->related_partner)) {
-
-                $relatedPartnerIds          = json_decode($landingPage->related_partner,true);
-                $data['related_partners']   = Partner::whereIn('id', $relatedPartnerIds)
-                    ->where('status',1)
-                    ->get();
-
-            }
-
-            $data['landingPage']        = $landingPage;
+            $sections = $landingPage->items()->orderBy("ordering", 'ASC')->get();
+            $data['sections'] = $sections;
 
             return View($data->view,compact('data'));
         }else {
@@ -356,7 +261,7 @@ class LandingPageController extends Controller
      * @param  \App\Models\backend\LandingPage  $landingPage
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreLandingPageRequest $request, LandingPage $landingPage)
+    public function update(Request $request, LandingPage $landingPage)
     {
         $message        = 'Đã cập nhật landingPage thành công.';
         $error_update   = 'Đã có lỗi xảy ra trong quá trình cập nhật. Vui lòng thử lại.';
@@ -369,102 +274,88 @@ class LandingPageController extends Controller
             }else {
                 $alias = $request->title;
             }
-
             $alias = utf8tourl( $alias );
-
             $user_id = $this->getUserData()->id ?? $landingPage->created_by;
 
-            $related_slider  = !empty( $request->related_slider ) ? Genratejsonarray( $request->related_slider ) : '';
-            $related_post_service = !empty( $request->related_post_service ) ? Genratejsonarray( $request->related_post_service ) : '';
-            $services_name = !empty($request->services_name) ? Genratejsonarray($request->services_name): "";
-            $services_url = !empty($request->services_url) ? Genratejsonarray($request->services_url): "";
-            $services_description = !empty($request->services_description) ? Genratejsonarray($request->services_description): "";
-            $why_title          = !empty( $request->why_title ) ? Genratejsonarray( $request->why_title ) : '';
-            $why_icon  	        = !empty( $request->why_icon ) ? Genratejsonarray( $request->why_icon ) : '';
-            $why_description    = !empty( $request->why_description ) ? Genratejsonarray( $request->why_description ) : '';
-            $related_product_hot  = !empty( $request->related_product_hot ) ? Genratejsonarray( $request->related_product_hot ) : '';
-            $related_product_sale = !empty( $request->related_product_sale ) ? Genratejsonarray( $request->related_product_sale ) : '';
-            $related_product_selling = !empty( $request->related_product_selling ) ? Genratejsonarray( $request->related_product_selling ) : '';
-            $funfact_number  = !empty( $request->funfact_number ) ? Genratejsonarray( $request->funfact_number ) : '';
-            $funfact_icon  	 = !empty( $request->funfact_icon ) ? Genratejsonarray( $request->funfact_icon ) : '';
-            $funfact_description = !empty( $request->funfact_description ) ? Genratejsonarray( $request->funfact_description ) : '';
-            $related_gallery = !empty( $request->related_gallery ) ? Genratejsonarray( $request->related_gallery ) : '';
-            $related_team    = !empty( $request->related_team ) ? Genratejsonarray( $request->related_team ) : '';
-            $related_post    = !empty( $request->related_post ) ? Genratejsonarray( $request->related_post ) : '';
-            $related_partner = !empty( $request->related_partner ) ? Genratejsonarray( $request->related_partner ) : '';
+            $data_section = [
+                'item_id'                   => $request->item_id,
+                'name'                      => $request->name,
+                'type'                      => $request->type,
+                'ordering'                  => $request->ordering,
+                'images'                    => $request->images,
+                'title_image'               => $request->title_image,
+                'alt_image'                 => $request->alt_image,
+                'images_mobile'             => $request->images_mobile,
+                'title_image_mobile'        => $request->title_image_mobile,
+                'alt_image_mobile'          => $request->alt_image_mobile,
+                'description'               => $request->description,
+            ];
 
             $data = [
-                'title'                 =>  $request->title,
-                'category_id'           =>  $request->category_id,
-                'alias'                 =>  $alias,
-                'images'                =>  $request->images,
-                'title_image'           =>  $request->title_image,
-                'alt_image'             =>  $request->alt_image,
-                'seo_title'             =>  $request->seo_title,
-                'seo_desciption'        =>  $request->seo_desciption,
-                'seo_keyword'           =>  $request->seo_keyword,
-                'related_slider'        =>  $related_slider,
-                'title_about'           =>  $request->title_about,
-                'images_about'          =>  $request->images_about,
-                'title_image_about'     =>  $request->title_image_about,
-                'alt_image_about'       =>  $request->alt_image_about,
-                'video_about'           =>  $request->video_about,
-                'content_about'         =>  $request->content_about,
-                'title_button_about'    =>  $request->title_button_about,
-                'button_link_about'     =>  $request->button_link_about,
-                'title_service'         =>  $request->title_service,
-                'images_service'        =>  $request->images_service,
-                'content_service'       =>  $request->content_service,
-                'related_post_service'  =>  $related_post_service,
-                'services_name'         =>  $services_name,
-                'services_url'          =>  $services_url,
-                'services_description'  =>  $services_description,
-                'title_why'             =>  $request->title_why,
-                'content_why'           =>  $request->content_why,
-                'images_why'            =>  $request->images_why,
-                'why_title'             =>  $why_title,
-                'why_icon'        	    =>  $why_icon,
-                'why_description'       =>  $why_description,
-                'title_product_hot'     =>  $request->title_product_hot,
-                'images_product_hot'    =>  $request->images_product_hot,
-                'content_product_hot'   =>  $request->content_product_hot,
-                'related_product_hot'  	=>  $related_product_hot,
-                'title_product_sale'     =>  $request->title_product_sale,
-                'images_product_sale'    =>  $request->images_product_sale,
-                'content_product_sale'   =>  $request->content_product_sale,
-                'related_product_sale'  	=>  $related_product_sale,
-                'title_product_selling'     =>  $request->title_product_selling,
-                'images_product_selling'    =>  $request->images_product_selling,
-                'content_product_selling'   =>  $request->content_product_selling,
-                'related_product_selling'  	=>  $related_product_selling,
-                'title_funfact'         =>  $request->title_funfact,
-                'content_funfact'       =>  $request->content_funfact,
-                'images_funfact'        =>  $request->images_funfact,
-                'funfact_number'        =>  $funfact_number,
-                'funfact_icon'        	=>  $funfact_icon,
-                'funfact_description'   =>  $funfact_description,
-                'title_gallery'         =>  $request->title_gallery,
-                'related_gallery'       =>  $related_gallery,
-                'title_team'            =>  $request->title_team,
-                'content_team'       	=>  $request->content_team,
-                'images_team'           =>  $request->images_team,
-                'related_team'          =>  $related_team,
-                'title_feedback'        =>  $request->title_feedback,
-                'content_feedback'      =>  $request->content_feedback,
-                'images_feedback'       =>  $request->images_feedback,
-                'title_news'            =>  $request->title_news,
-                'images_news'           =>  $request->images_news,
-                'related_post'          =>  $related_post,
-                'title_partner'         =>  $request->title_partner,
-                'related_partner'       =>  $related_partner,
-                'updated_by'            =>  $user_id,
-                'title_partner' => $request->title_partner,
-                'description_partner' => $request->description_partner
+                'title'                         =>  $request->title,
+                'category_id'                   =>  $request->category_id,
+                'alias'                         =>  $alias,
+                'image_landing'                 =>  $request->image_landing,
+                'title_image_landing'           =>  $request->title_image_landing,
+                'alt_image_landing'             =>  $request->alt_image_landing,
+                'seo_title'                     =>  $request->seo_title,
+                'seo_desciption'                =>  $request->seo_desciption,
+                'seo_keyword'                   =>  $request->seo_keyword,
+                'created_by'                    =>  $user_id,
+                'status'                        =>  1,
             ];
 
 
             try{
                 $update_landingPage = $landingPage->update( $data );
+
+                //xoá item
+                $list_landing = LandingPageItem::select('id')->where('id_landing',$landingPage->id)->get();
+                $array_id = [];
+
+                if(!empty($list_landing) && count($list_landing) > 0){
+                    foreach ($list_landing as $key => $item){
+                        $array_id[] = $item->id;
+                    }
+                }
+
+                if(!empty($array_id) && count($array_id) > 0){
+                    foreach ($array_id as $key => $item){
+                        if(!in_array( (string) $item, $data_section['item_id']) ){
+                            LandingPageItem::where('id',$item)->delete();
+                        }
+                    }
+                }
+
+                //update product item
+                foreach($data_section['item_id'] as $key => $item){
+
+                    $data_item = [
+                        'id_landing'            => $landingPage->id,
+                        'name'                  => $data_section['name'][$key],
+                        'type'                  => $data_section['type'][$key],
+                        'ordering'              => (int) $data_section['ordering'][$key],
+                        'images'                => $data_section['images'][$key],
+                        'title_image'           => $data_section['title_image'][$key],
+                        'alt_image'             => $data_section['alt_image'][$key],
+                        'images_mobile'         => $data_section['images_mobile'][$key],
+                        'title_image_mobile'    => $data_section['title_image_mobile'][$key],
+                        'alt_image_mobile'      => $data_section['alt_image_mobile'][$key],
+                        'description'           => $data_section['description'][$key],
+                        'created_by'            => $user_id,
+                        'status'                => 1,
+                    ];
+                    $data_item['items'] = $this->render_items($data_section['type'][$key], $request);
+
+                    //nếu tồn tại id thì update
+                    if($item != null){
+                        LandingPageItem::where('id',$item)->update($data_item);
+                    }else{
+                        //chưa có id thì tạo mới
+                        LandingPageItem::create($data_item);
+                    }
+                }
+
 
                 if( $update_landingPage ) {
                     $url =  Url::findURLByModule( 'LandingPage', $request->id );
@@ -482,7 +373,7 @@ class LandingPageController extends Controller
                             'url'       =>  $alias,
                             'module'    =>  'LandingPage',
                             'action'    =>  'LandingPageDetail',
-                            'object_id' =>  $request->id,
+                            'object_id' =>  $landingPage->id,
                         ];
                         Url::create( $data_url );
                     }

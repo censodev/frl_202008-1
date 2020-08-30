@@ -4,6 +4,10 @@
   {{ $data->title }}
 @endsection
 
+@php
+    $types = $data['types'];
+@endphp
+
 @section('content')
 	<!-- Content Header (Page header) -->
     <section class="content-header">
@@ -56,62 +60,160 @@
                     @php
                         $level = 0;
                         $category_level = $data['category_level']->toArray();
+                        showListCategoryPost($category_level,$level);
                     @endphp
                 </select>
             </div>
-            <div id="holder" class="thumbnail text-center">
+            <div id="holder_landing" class="thumbnail text-center">
             </div>
             <div class="input-group">
               <span class="input-group-btn">
-                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                <a id="lfm" data-input="thumbnail_landing" data-preview="holder_landing" class="btn btn-primary">
                   <i class="fa fa-picture-o"></i> Chọn Ảnh Đại Diện
                 </a>
               </span>
-                <input id="thumbnail" class="form-control" type="text" name="images" value="">
+                <input id="thumbnail_landing" class="form-control" type="text" name="image_landing" value="">
             </div>
 
             <div class="row mt-1rem">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="title_image">Tiêu Đề Hình Ảnh</label>
-                        <input type="text" id="title_image" name="title_image" placeholder="Nhập tiêu đề hình ảnh" class="form-control" value="{{ old('title_image') }}">
+                        <input type="text" name="title_image_landing" placeholder="Nhập tiêu đề hình ảnh" class="form-control" value="{{ old('title_image_landing') }}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="alt_image">Mô Tả Hình Ảnh</label>
-                        <input type="text" id="alt_image" name="alt_image" placeholder="Nhập mô tả hình ảnh" class="form-control" value="{{ old('alt_image') }}">
+                        <input type="text" name="alt_image_landing" placeholder="Nhập mô tả hình ảnh" class="form-control" value="{{ old('alt_image_landing') }}">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="seo_title">SEO Tiêu Đề <span id="seotitleerror" class="error alert-danger"><span class="change-text">Chuẩn SEO</span> <span id="validatetitleseo"> </span>/60 kí tự</span></label>
-                <input type="text" id="seo_title" name="seo_title" placeholder="Nhập Seo tiêu đề" class="form-control" value="{{ old('seo_title') }}">
+                <input type="text" id="seo_title" name="seo_title" placeholder="Nhập Seo tiêu đề" class="form-control" value="{{ old('seo_title') }}" required>
             </div>
             <div class="form-group">
                 <label for="seo_desciption">SEO Mô Tả <span id="seodeserror" class="error alert-danger" ><span class="change-text">Chuẩn SEO</span> <span id="validateseomota"></span>/160 kí tự</span></label>
-                <input type="text" id="seo_desciption" name="seo_desciption" placeholder="Nhập Seo mô tả" class="form-control" value="{{ old('seo_desciption') }}">
+                <input type="text" id="seo_desciption" name="seo_desciption" placeholder="Nhập Seo mô tả" class="form-control" value="{{ old('seo_desciption') }}" required>
             </div>
             <div class="form-group">
                 <label for="seo_keyword">SEO Từ Khóa</label>
-                <input type="text" id="seo_keyword" name="seo_keyword" placeholder="Nhập Seo từ khóa" class="form-control" value="{{ old('seo_keyword') }}">
+                <input type="text" id="seo_keyword" name="seo_keyword" placeholder="Nhập Seo từ khóa" class="form-control" value="{{ old('seo_keyword') }}" required>
             </div>
 
 
-          @include('backend.pages.landingPage.inc-add.slider')
+            <div class="card card-solid">
+                <div class="card-header">
+                    <h3 class="card-title">Section</h3>
+                </div>
+                <div class="card-body pb-0">
+                    <div class="row d-flex align-items-stretch increment-section">
+                        <div class="col-12 col-sm-12 col-md-12 align-items-stretch section-item">
+                            <div class="card bg-light">
+                                <div class="card-header text-muted border-bottom-0">
+                                    Section
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="row">
+                                        <input type="hidden" value="" name="item_id[]">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Tiêu đề</label>
+                                                <input type="text" name="name[]" placeholder="Nhập tiêu đề" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập tiêu đề.')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Chọn loại modules</label>
+                                                <select name="type[]" class="form-control" required>
+                                                    <option value="">---chọn loại---</option>
+                                                    @foreach($types as $key => $type)
+                                                        <option value="{{ $key }}">{{ $type }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Thứ tự</label>
+                                                <input type="number" name="ordering[]" class="form-control" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div id="holder" class="thumbnail text-center"></div>
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                      <a data-input="thumbnail" data-preview="holder" class="lfm-mul btn btn-primary">
+                                                        <i class="fa fa-picture-o"></i> Chọn Ảnh Desktop
+                                                      </a>
+                                                    </span>
+                                                    <input id="thumbnail" class="form-control" type="text" name="images[]" required oninvalid="this.setCustomValidity('Vui lòng chọn hình ảnh.')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
 
-          @include('backend.pages.landingPage.inc-add.about')
+                                            <div class="form-group">
+                                                <label for="title_image">Tiêu Đề Hình Ảnh Desktop</label>
+                                                <input type="text" id="title_image" name="title_image[]" placeholder="Nhập tiêu đề hình ảnh" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập tiêu đề.')" oninput="setCustomValidity('')">
+                                            </div>
 
-          @include('backend.pages.landingPage.inc-add.service')
+                                            <div class="form-group">
+                                                <label for="alt_image">Mô Tả Hình Ảnh Desktop</label>
+                                                <input type="text" id="alt_image" name="alt_image[]" placeholder="Nhập mô tả hình ảnh" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập mô tả.')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div id="holder_mobile" class="thumbnail text-center"></div>
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                      <a data-input="thumbnail_mobile" data-preview="holder_mobile" class="lfm-mul btn btn-primary">
+                                                        <i class="fa fa-picture-o"></i> Chọn Ảnh Mobile
+                                                      </a>
+                                                    </span>
+                                                    <input id="thumbnail_mobile" class="form-control" type="text" name="images_mobile[]" required oninvalid="this.setCustomValidity('Vui lòng chọn hình ảnh.')" oninput="setCustomValidity('')">
+                                                </div>
+                                            </div>
 
-		  @include('backend.pages.landingPage.inc-add.why')
+                                            <div class="form-group">
+                                                <label for="title_image">Tiêu Đề Hình Ảnh Mobile</label>
+                                                <input type="text" name="title_image_mobile[]" placeholder="Nhập tiêu đề hình ảnh" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập tiêu đề.')" oninput="setCustomValidity('')">
+                                            </div>
 
-          @include('backend.pages.landingPage.inc-add.counter')
+                                            <div class="form-group">
+                                                <label for="alt_image">Mô Tả Hình Ảnh Mobile</label>
+                                                <input type="text" name="alt_image_mobile[]" placeholder="Nhập mô tả hình ảnh" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập mô tả.')" oninput="setCustomValidity('')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="description">Chi Tiết</label>
+                                                <textarea name="description[]" class="form-control" rows="4"></textarea>
+                                            </div>
+                                        </div>
 
-          @include('backend.pages.landingPage.inc-add.feedback')
+                                        <div class="col-md-12 list-value">
+                                            <div class="form-group block-search-appliesto">
+                                                <button class="btn btn-info " disabled type="button" data-toggle="modal" data-target="" search="" is-append="0"><i class="fas fa-search"></i> Tìm kiếm</button>
+                                            </div>
+                                            <div class="form-group">
+                                                <ul class="todo-list appliesto-value" data-widget="todo-list">
 
-          @include('backend.pages.landingPage.inc-add.partner')
+                                                </ul>
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button class="btn-clone-section btn btn-info" type="button"><i class="fas fa-plus"></i> Thêm Section</button>
+                    </div>
+                </div>
+            </div>
           <div class="row">
             <div class="col-12">
               <a href="{{ route('landingPage.index') }}" class="btn btn-secondary">Thoát</a>
@@ -126,7 +228,6 @@
 
     <!-- Clone -->
 
-    @include('backend.includes.clone-funfact')
-    @include('backend.includes.clone-why')
+    @include('backend.includes.clone-section-landing')
 
 @endsection
