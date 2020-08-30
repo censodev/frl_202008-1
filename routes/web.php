@@ -450,6 +450,11 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
         'uses' 	=> 'backend\OrderController@changeStatus',
     ));
 
+    /* Seeding fb change status */
+    Route::post("/seeding-fb-comments/change_status" , array(
+        'as' 	=> 'seeding_fb_comments_change_status',
+        'uses' 	=> 'backend\SeedingFbCommentsController@changeStatus',
+    ));
 });
 
 /**

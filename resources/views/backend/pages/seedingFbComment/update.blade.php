@@ -53,19 +53,13 @@
                 </div>
 
                   <div class="row mt-1rem">
-                      <div class="col-md-8">
+                      <div class="col-md-9">
                           <div class="form-group">
                               <label>Nội Dung</label>
                               <input type="text" name="content" placeholder="Nhập nội dung" class="form-control" value="{{ $seeding->content ?? old('content') }}">
                           </div>
                       </div>
-                      <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Lượt Tương Tác</label>
-                            <input type="number" min="0" name="likes" placeholder="Nhập thời gian" class="form-control" value="{{ $seeding->likes ?? old('likes') }}">
-                        </div>
-                    </div>
-                      <div class="col-md-2">
+                      <div class="col-md-3">
                           <div class="form-group">
                               <label>Thời Gian</label>
                               <input type="text" name="time" placeholder="(VD: 1 ngày trước,...)" class="form-control" value="{{ $seeding->time ?? old('time') }}">
@@ -89,13 +83,7 @@
                 </div>
 
                 <div class="row mt-1rem">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="title_image">Tiêu Đề Hình Ảnh</label>
-                      <input type="text" id="title_image" name="title_image" placeholder="Nhập tiêu đề hình ảnh" class="form-control" value="{{ $seeding->title_image ?? old('title_image') }}" required oninvalid="this.setCustomValidity('Vui lòng nhập tiêu đề hình ảnh.')" oninput="setCustomValidity('')">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group">
                       <label for="alt_image">Mô Tả Hình Ảnh</label>
                       <input type="text" id="alt_image" name="alt_image" placeholder="Nhập mô tả hình ảnh" class="form-control" value="{{ $seeding->alt_image ?? old('alt_image') }}" required oninvalid="this.setCustomValidity('Vui lòng nhập mô tả hình ảnh.')" oninput="setCustomValidity('')">

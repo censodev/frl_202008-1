@@ -63,7 +63,7 @@
 							</div>
 
 							<div class="form-group">
-								<label for="album_hot_alt_images">Alt Image</label>
+								<label for="album_hot_alt_images">Mô tả Hình Ảnh</label>
 								<input type="text" id="album_hot_alt_images" name="album_hot_alt_images[]" placeholder="Nhập alt" class="form-control" value="{{ $album_hot_alt_images[$key] ?? '' }}">
 							</div>
 
@@ -109,7 +109,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="album_hot_alt_images">Alt Image</label>
+							<label for="album_hot_alt_images">Mô tả Hình Ảnh</label>
 							<input type="text" id="album_hot_alt_images" name="album_hot_alt_images[]" placeholder="Nhập alt" class="form-control" value="">
 						</div>
 

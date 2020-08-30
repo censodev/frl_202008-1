@@ -10,6 +10,7 @@ use File;
 
 use App\Services\ImageService;
 use App\Models\backend\SeedingFbComment;
+use App\Models\backend\HomepageManager;
 
 class SeedingFbCommentsController extends Controller
 {
@@ -48,6 +49,8 @@ class SeedingFbCommentsController extends Controller
             $data['seeding'] = SeedingFbComment::listSeeding(Null, true, $this->limit);
         }
 
+        $data['status'] = HomepageManager::getHomeDefault()['seeding_fb_comment_status'];
+
         $data['keyword'] = $data->keyword;
         $data['create_new'] = route('seeding-fb-comments.create');
 
@@ -85,10 +88,8 @@ class SeedingFbCommentsController extends Controller
         $data = [
             'name'              =>  $request->name,
             'content'           =>  $request->content,
-            'likes'             =>  $request->likes,
             'time'              =>  $request->time,
             'image'             =>  $request->image,
-            'title_image'       =>  $request->title_image,
             'alt_image'         =>  $request->alt_image,
             'created_by'        =>  $user_id,
             'status'            =>  1,
@@ -167,7 +168,6 @@ class SeedingFbCommentsController extends Controller
                 'content'           =>  $request->content,
                 'time'              =>  $request->time,
                 'image'             =>  $request->image,
-                'title_image'       =>  $request->title_image,
                 'alt_image'         =>  $request->alt_image,
                 'updated_by'        =>  $user_id,
             ];
@@ -208,5 +208,29 @@ class SeedingFbCommentsController extends Controller
         $seeding->update( $data );
 
         return response()->json(['result' => 'Đã xóa thành công.'], 200);
+    }
+
+    public function changeStatus()
+    {
+        $message            = 'Đã thay đổi trạng thái thành công.';
+        $error              = 'Đã có lỗi xảy ra. Xin vui lòng thử lại';
+
+        
+
+        try {
+            $home_default = HomepageManager::getHomeDefault();
+            $status = $home_default->seeding_fb_comment_status == 1 ? 0 : 1;
+            $user_id = Auth::user()->id;
+
+            $home_default->seeding_fb_comment_status = $status;
+            $home_default->updated_by = $user_id;
+
+            $home_default->save();
+
+            return response()->json(['message' => $message], 200);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => $error], 200);
+        }
     }
 }

@@ -24,6 +24,7 @@ use App\Models\backend\Feedback;
 use App\Models\backend\ConfigSeo;
 use App\Models\backend\ConfigLogo;
 use App\Models\backend\Schema;
+use App\Models\backend\SeedingFbComment;
 
 class HomeController extends Controller
 {
@@ -156,7 +157,11 @@ class HomeController extends Controller
         }else {
             abort('404');
         }
-
+        
+        $data['fb_comments'] = $data['home_default']['seeding_fb_comment_status'] == 1
+            ? SeedingFbComment::listSeeding()
+            : null;
+        
 		$logo = ConfigLogo::where("status",1)->get();
         $logo->top = $logo->where("type",1)->first();
 

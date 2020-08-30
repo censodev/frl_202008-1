@@ -110,18 +110,6 @@
             {{-- Fb cmt --}}
             @include('frontend.pages.home.partial.fb-comments')
 
-            <!-- chứng nhận Section -->
-            {{-- @include('frontend.pages.home.partial.certify') --}}
-            <!-- End chứng nhận Section -->
-
-            <!-- dịch vụ Section -->
-            {{-- @include('frontend.pages.home.partial.tv-new') --}}
-            <!-- End dịch vụ Section -->
-
-            <!-- đối tác Section -->
-            {{-- @include('frontend.pages.home.partial.partner') --}}
-            <!-- End đối tác Section -->
-
 
         </div>
 
