@@ -543,4 +543,29 @@ use App\Models\backend\Url;
         }
         return $start_html;
     }
+
+    function render_landing($data){
+        $html = '';
+        if(!empty($data) && count($data) > 0){
+            foreach($data as $key => $item){
+                $alias  = url( $item->alias );
+
+                $images         = $item->image_landing;
+                $title_image    = $item->title_image_landing;
+                $alt_image      = $item->alt_image_landing;
+
+                $html .= '<li class="col-md-3">
+                                <figure>
+                                    <a href="'.$alias .'" title="'.$item['title'].'"><img src="'.$images.'" alt="'.$title_image.' title="'.$alt_image.'"></a>
+                                </figure>
+                                <div class="ereaders-shop-grid-text">
+                                    <h3><a href="'.$alias.'" title="'.$item['title'].'">'.$item['title'].'</a></h3>
+                                    <p>'.$item['seo_desciption'].'</p>
+                                </div>
+                            </li>';
+            }
+        }
+
+        return $html;
+    }
 ?>

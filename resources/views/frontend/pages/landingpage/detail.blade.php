@@ -153,6 +153,159 @@
                         </div>
                     @endif
 
+                    @if($type == 'service')
+                        @php
+                            $listItems = json_decode($section->items, true);
+                        @endphp
+                        <div class="ereaders-main-section ereaders-service-providefull">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title">
+                                            <h2 class="bounceIn wow">{{ $section->name }}</h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $section->description !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <aside class="col-md-12">
+                                        <div class="ereaders-service ereaders-service-list fadeInUp wow">
+                                            <ul class="row">
+                                                @if(!empty($listItems['services_name']) && count($listItems['services_name']) > 0)
+                                                    @foreach($listItems['services_name'] as $key => $item)
+                                                        @if($item != null)
+                                                            <li class="col-md-4">
+                                                                {!! $listItems['services_url'][$key] !!}
+                                                                <h5><a href="#">{{ $item }}</a></h5>
+                                                                {!! substr($listItems['services_description'][$key], 0, 150) !!}
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            </ul>
+                                        </div>
+                                    </aside>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if ($type == 'video-hot')
+                        @php
+                            $listItems = json_decode($section->items, true);
+                        @endphp
+                        <div class="ereaders-main-section ereaders-blog-gridfull">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title">
+                                            <h2 class="bounceIn wow">{{ $section->name }}</h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $section->description !!}
+                                            </div>
+                                        </div>
+                                        <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
+                                            <ul class="row">
+                                                @foreach ($listItems['video_hot_title'] as $k => $v_title)
+                                                    @if ($v_title)
+                                                        <li class="col-md-4">
+                                                            <div class="ereaders-blog-grid-wrap">
+                                                                <figure>
+                                                                    <a href="#">{!! $listItems['video_hot_embed'][$k] !!}</a>
+                                                                </figure>
+                                                                <div class="ereaders-blog-grid-text">
+                                                                    <h3><a href="#">{{ $v_title }}</a></h3>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    @endif
+                                                    
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if ($type == 'album-hot')
+                        @php
+                            $listItems = json_decode($section->items, true);
+                        @endphp
+                        <div class="ereaders-main-section ereaders-blog-gridfull">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title">
+                                            <h2 class="bounceIn wow">{{ $section->name }}</h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $section->description !!}
+                                            </div>
+                                        </div>
+                                        <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
+                                            <ul class="row">
+                                                @foreach ($listItems['album_hot_title'] as $k => $a_title)
+                                                    @if ($a_title)
+                                                        <li class="col-md-3">
+                                                            <div class="ereaders-blog-grid-wrap">
+                                                                <figure>
+                                                                    <a class="fancybox" rel="gallery1" href="{{ $listItems['album_hot_images'][$k] }}">
+                                                                        <img src="{{ $listItems['album_hot_images'][$k] }}" alt="{{ $listItems['album_hot_alt_images'][$k] }}">
+                                                                    </a>
+                                                                </figure>
+                                                                <div class="ereaders-blog-grid-text">
+                                                                    <h3><a href="#">{{ $a_title }}</a></h3>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endif
+                @if ($type == 'feedback')
+                    <div class="ereaders-main-section ereaders-testimonialfull">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="ereaders-testimonial">
+                                        <div class="ereaders-testimonial-wrap">
+                                            @php
+                                                $feedbacks = \App\Models\backend\Feedback::listFeedback();
+                                            @endphp
+                                            <div class="ereaders-fancy-title bounceIn wow"><h2>{{ $section->name }}</h2></div>
+                                            <div class="ereaders-testimonial-slide fadeInUp wow">
+                                                @if( !empty( $feedbacks ) && count( $feedbacks ) > 0 )
+                                                    @foreach( $feedbacks as $feedback )
+                                                        @php
+                                                            $images = !empty( $feedback->images ) ? $feedback->images : asset('assets/admin/dist/img/avatar5.png');
+                                                        @endphp
+                                                        <div class="ereaders-testimonial-slide-layer">
+                                                            <figure><img src="{{ $images }}" title="{{ $feedback->title_image }}" alt="{{ $feedback->alt_image }}"></figure>
+                                                            <div class="ereaders-testimonial-text">
+                                                                <h4>{{ $feedback->name_customer }}</h4>
+                                                                <span>{{ $feedback->position }}</span>
+                                                                {!! $feedback->description !!}
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
             @endforeach
         @endif

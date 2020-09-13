@@ -113,6 +113,7 @@ $(document).ready(function() {
 	// Clone Service
 	$('.btn-clone-services').on('click', function() {
 		var html = $(".clone-services-area").html();
+		console.log(html)
       	$(".increment-services").append(html);
 
       	$('.btn-remove-service').on('click', function() {
@@ -398,7 +399,34 @@ function run_trigger() {
         button.addClass(button_class);
         button.attr('data-target', target);
         button.attr('search', search);
-        ul.addClass(ul_class);
-    });
+		ul.addClass(ul_class);
+
+		landingPageChooseSection(type, $('select[name="type[]"]').index(this))
+	});
+	
+	function landingPageChooseSection(type, index) {
+		let services = document.querySelectorAll('.section-service')
+		let videoHots = document.querySelectorAll('.section-video-hot')
+		let albumHots = document.querySelectorAll('.section-album-hot')
+		let arr = [
+			services,
+			videoHots,
+			albumHots,
+		]
+		arr.forEach(i => i[index].classList.add('hide'))
+		switch (type) {
+			case 'video-hot':
+				videoHots[index].classList.remove('hide')
+				break;
+			case 'album-hot':
+				albumHots[index].classList.remove('hide')
+				break;
+			case 'service':
+				services[index].classList.remove('hide')
+				break;
+			default:
+				break;
+		}
+	}
 
 }

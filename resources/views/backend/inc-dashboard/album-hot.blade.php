@@ -49,53 +49,53 @@
 			  <div class="row d-flex align-items-stretch increment-album-hot">
 
 				@if( isset($album_hot_title) )
-				  @foreach( $album_hot_title as $key => $w_title )
-
-					<div class="col-12 col-sm-4 col-md-3 d-flex align-items-stretch @if( $key > 0 ) clone-album-hot-cli @endif ">
-					  <div class="card bg-light">
-						<div class="card-header text-muted border-bottom-0">
-							Ảnh
-						</div>
-						<div class="card-body pt-0">
-							<div class="form-group">
-								<label for="album_hot_title">Tiêu Đề</label>
-								<input type="text" id="album_hot_title" name="album_hot_title[]" placeholder="Nhập tiêu đề" class="form-control" value="{{ $w_title ?? '' }}">
-							</div>
-
-							<div class="form-group">
-								<label for="album_hot_alt_images">Mô tả Hình Ảnh</label>
-								<input type="text" id="album_hot_alt_images" name="album_hot_alt_images[]" placeholder="Nhập alt" class="form-control" value="{{ $album_hot_alt_images[$key] ?? '' }}">
-							</div>
-
-							<div class="form-group">
-								<div id="holder-album-hot-<?php echo $key ?>" class="thumbnail text-center">
-									<img src="{{ $album_hot_images[$key] }}" style="height: 5rem;">
+					@foreach( $album_hot_title as $key => $w_title )
+						@if ($w_title)
+						<div class="col-12 col-sm-4 col-md-3 d-flex align-items-stretch @if( $key > 0 ) clone-album-hot-cli @endif ">
+							<div class="card bg-light">
+							  <div class="card-header text-muted border-bottom-0">
+								  Ảnh
+							  </div>
+							  <div class="card-body pt-0">
+								  <div class="form-group">
+									  <label for="album_hot_title">Tiêu Đề</label>
+									  <input type="text" id="album_hot_title" name="album_hot_title[]" placeholder="Nhập tiêu đề" class="form-control" value="{{ $w_title ?? '' }}">
+								  </div>
+	  
+								  <div class="form-group">
+									  <label for="album_hot_alt_images">Mô tả Hình Ảnh</label>
+									  <input type="text" id="album_hot_alt_images" name="album_hot_alt_images[]" placeholder="Nhập alt" class="form-control" value="{{ $album_hot_alt_images[$key] ?? '' }}">
+								  </div>
+	  
+								  <div class="form-group">
+									  <div id="holder-album-hot-{{ $key }}" class="thumbnail text-center">
+										  <img src="{{ $album_hot_images[$key] }}" style="height: 5rem;">
+									  </div>
+									  <div class="input-group">
+										  <span class="input-group-btn">
+											  <a data-input="thumbnail-album-hot-{{ $key }}" data-preview="holder-album-hot-{{ $key }}" class="lfm-mul btn btn-primary">
+											  <i class="fa fa-picture-o"></i> Chọn Ảnh
+											  </a>
+										  </span>
+										  <input id="thumbnail-album-hot-{{ $key }}" class="form-control" type="text" name="album_hot_images[]" value="{{ $album_hot_images[$key] }}" >
+									  </div>
+								  </div>
+							  </div>
+	  
+							  @if( $key > 0 )
+								<div class="card-footer">
+								  <div class="text-right">
+									<button class="btn btn-sm btn-danger btn-remove-album-hot" type="button">
+									  <i class="fas fa-trash"></i> Xóa
+									</button>
+								  </div>
 								</div>
-								<div class="input-group">
-									<span class="input-group-btn">
-										<a data-input="thumbnail-album-hot-<?php echo $key ?>" data-preview="holder-album-hot-<?php echo $key ?>" class="lfm-mul btn btn-primary">
-										<i class="fa fa-picture-o"></i> Chọn Ảnh
-										</a>
-									</span>
-									<input id="thumbnail-album-hot-<?php echo $key ?>" class="form-control" type="text" name="album_hot_images[]" value="{{ $album_hot_images[$key] }}" required oninvalid="this.setCustomValidity('Vui lòng chọn hình ảnh.')" oninput="setCustomValidity('')">
-								</div>
-							</div>
-						</div>
-
-						@if( $key > 0 )
-						  <div class="card-footer">
-							<div class="text-right">
-							  <button class="btn btn-sm btn-danger btn-remove-album-hot" type="button">
-								<i class="fas fa-trash"></i> Xóa
-							  </button>
+							  @endif
+	  
 							</div>
 						  </div>
 						@endif
-
-					  </div>
-					</div>
-
-				  @endforeach
+					@endforeach
 				@else
 				  <div class="col-12 col-sm-4 col-md-3 d-flex align-items-stretch">
 					<div class="card bg-light">
@@ -121,7 +121,7 @@
 									<i class="fa fa-picture-o"></i> Chọn Ảnh
 									</a>
 								</span>
-								<input id="thumbnail-album-hot-0" class="form-control" type="text" name="album_hot_images[]" required oninvalid="this.setCustomValidity('Vui lòng chọn hình ảnh.')" oninput="setCustomValidity('')">
+								<input id="thumbnail-album-hot-0" class="form-control" type="text" name="album_hot_images[]" >
 							</div>
 						</div>
 					  </div>
@@ -132,7 +132,7 @@
 			  </div>
 
 			  <div class="form-group text-right">
-				<button data-count="<?php echo count($album_hot_title) ?>" class="btn-clone-album-hot btn btn-info" type="button"><i class="fas fa-plus"></i> Thêm Ảnh</button>
+				<button data-count="{{count($album_hot_title ?? []) }}" class="btn-clone-album-hot btn btn-info" type="button"><i class="fas fa-plus"></i> Thêm Ảnh</button>
 			  </div>
 
 			</div>
@@ -146,3 +146,6 @@
 	<!-- /.col -->
 </div>
 <!-- /.row -->
+
+
+@include('backend.includes.clone-album-hot')

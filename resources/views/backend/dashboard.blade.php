@@ -123,7 +123,4 @@
   <!-- Clone -->
   @include('backend.includes.clone-funfact')
   @include('backend.includes.clone-why')
-  @include('backend.includes.clone-video-hot')
-  @include('backend.includes.clone-album-hot')
-
 @endsection

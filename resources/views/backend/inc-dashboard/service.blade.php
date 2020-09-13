@@ -130,9 +130,6 @@
 <div class="clone-services-area hide">
 	<div class="col-12 col-sm-4 col-md-3 d-flex align-items-stretch clone-service-cli">
 					<div class="card bg-light">
-					  <div class="card-header text-muted border-bottom-0">
-                          Quy Trình Dich Vụ
-                      </div>
 					  <div class="card-body pt-0">
 						<div class="form-group">
 						  <label for="why_title">Giá Trị</label>

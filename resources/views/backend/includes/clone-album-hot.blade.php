@@ -24,7 +24,7 @@
                             <i class="fa fa-picture-o"></i> Chọn Ảnh
                             </a>
                         </span>
-                        <input id="thumbnail-album-hot-number" class="form-control" type="text" name="album_hot_images[]" required oninvalid="this.setCustomValidity('Vui lòng chọn hình ảnh.')" oninput="setCustomValidity('')">
+                        <input id="thumbnail-album-hot-number" class="form-control" type="text" name="album_hot_images[]" >
                     </div>
                 </div>
             </div>

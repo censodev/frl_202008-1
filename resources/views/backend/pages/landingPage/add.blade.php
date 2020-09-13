@@ -204,6 +204,15 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-md-12 hide section-service">
+                                            @include('backend.inc-dashboard.service')
+                                        </div>
+                                        <div class="col-md-12 hide section-video-hot">
+                                            @include('backend.inc-dashboard.video-hot')
+                                        </div>
+                                        <div class="col-md-12 hide section-album-hot">
+                                            @include('backend.inc-dashboard.album-hot')
+                                        </div>
                                     </div>
                                 </div>
                             </div>

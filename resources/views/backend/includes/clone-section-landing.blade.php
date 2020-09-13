@@ -92,6 +92,28 @@
                             </ul>
                         </div>
                     </div>
+
+                    @php
+                        $services_name = null;
+                        $services_url = null;
+                        $services_description = null;
+
+                        $video_hot_title = null;
+                        $video_hot_embed = null;
+
+                        $album_hot_title = null;
+                        $album_hot_images = null;
+                        $album_hot_alt_images = null;
+                    @endphp
+                    <div class="col-md-12 hide section-service">
+                        @include('backend.inc-dashboard.service')
+                    </div>
+                    <div class="col-md-12 hide section-video-hot">
+                        @include('backend.inc-dashboard.video-hot')
+                    </div>
+                    <div class="col-md-12 hide section-album-hot">
+                        @include('backend.inc-dashboard.album-hot')
+                    </div>
                 </div>
             </div>
             <div class="card-footer">

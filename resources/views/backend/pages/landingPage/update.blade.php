@@ -219,6 +219,16 @@
                                                         $ul_class = 'block-'. $section->type .'-list';
                                                         $type = $section->type;
 
+                                                        $services_name = null;
+                                                        $services_url = null;
+                                                        $services_description = null;
+
+                                                        $video_hot_title = null;
+                                                        $video_hot_embed = null;
+
+                                                        $album_hot_title = null;
+                                                        $album_hot_images = null;
+                                                        $album_hot_alt_images = null;
 
                                                         $Ids = $listItems = [];
                                                         if(isset($section->items) && !empty($section->items)) {
@@ -245,6 +255,20 @@
                                                             if($type == 'endow'){
                                                                 $listItems              = Endow::whereIn('id', $Ids)->where('status',1)->get();
                                                                 $related                = 'related_endow[]';
+                                                            }
+                                                            if($type == 'service'){
+                                                                $services_name          = json_decode($section->items, true)['services_name'];
+                                                                $services_url           = json_decode($section->items, true)['services_url'];
+                                                                $services_description   = json_decode($section->items, true)['services_description'];
+                                                            }
+                                                            if($type == 'video-hot'){
+                                                                $video_hot_title        = json_decode($section->items, true)['video_hot_title'];
+                                                                $video_hot_embed        = json_decode($section->items, true)['video_hot_embed'];
+                                                            }
+                                                            if($type == 'album-hot'){
+                                                                $album_hot_title        = json_decode($section->items, true)['album_hot_title'];
+                                                                $album_hot_images       = json_decode($section->items, true)['album_hot_images'];
+                                                                $album_hot_alt_images   = json_decode($section->items, true)['album_hot_alt_images'];
                                                             }
                                                         }
 
@@ -293,6 +317,15 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="col-md-12 {{ $type == 'service' ? '' : 'hide' }} section-service">
+                                                        @include('backend.inc-dashboard.service')
+                                                    </div>
+                                                    <div class="col-md-12 {{ $type == 'video-hot' ? '' : 'hide' }} section-video-hot">
+                                                        @include('backend.inc-dashboard.video-hot')
+                                                    </div>
+                                                    <div class="col-md-12 {{ $type == 'album-hot' ? '' : 'hide' }} section-album-hot">
+                                                        @include('backend.inc-dashboard.album-hot')
+                                                    </div>
                                                 </div>
                                             </div>
                                             @if($key_section > 0)
@@ -402,6 +435,16 @@
 
                                                         </ul>
                                                     </div>
+                                                </div>
+
+                                                <div class="col-md-12 hide section-service">
+                                                    @include('backend.inc-dashboard.service')
+                                                </div>
+                                                <div class="col-md-12 hide section-video-hot">
+                                                    @include('backend.inc-dashboard.video-hot')
+                                                </div>
+                                                <div class="col-md-12 hide section-album-hot">
+                                                    @include('backend.inc-dashboard.album-hot')
                                                 </div>
 
                                             </div>
