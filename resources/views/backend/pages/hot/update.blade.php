@@ -96,6 +96,13 @@
                   </div>
                 </div>
 
+                <div class="row mt-1rem">
+                  <div class="col-md-12">
+                    <label for="">Mô tả ngắn danh mục</label>
+                    <textarea name="description" id="" rows="5" class="form-control">{{ $hot->description ?? old('description') }}</textarea>
+                  </div>
+                </div>
+
               </div>
               <!-- /.card-body -->
             </div>

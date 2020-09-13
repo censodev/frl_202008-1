@@ -23,6 +23,7 @@
                                         <figure><a href="{{ $hot->link }}" title="{{ $hot->link_title }}"><img src="{{ $images }}" title="{{ $hot->title_image }}" alt="{{ $hot->alt_image }}"></a></figure>
                                         <div class="ereaders-blog-grid-text">
                                             <h2><a href="{{ $hot->link }}" title="{{ $hot->name }}">{{ $hot->name }}</a></h2>
+                                            <p>{{ $hot->description }}</p>
                                         </div>
                                     </div>
                                 </li>

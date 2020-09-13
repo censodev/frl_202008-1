@@ -95,6 +95,7 @@ class HotController extends Controller
             'images'            =>  $request->images,
             'title_image'       =>  $request->title_image,
             'alt_image'         =>  $request->alt_image,
+            'description'       =>  $request->description,
             'created_by'        =>  $user_id,
             'status'            =>  1,
         ];
@@ -177,6 +178,7 @@ class HotController extends Controller
                 'images'            =>  $request->images,
                 'title_image'       =>  $request->title_image,
                 'alt_image'         =>  $request->alt_image,
+                'description'       =>  $request->description,
                 'updated_by'        =>  $user_id,
             ];
 

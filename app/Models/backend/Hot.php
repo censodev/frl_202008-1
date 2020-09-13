@@ -10,7 +10,7 @@ class Hot extends Model
     protected $table = 'hotcategories';
 
     protected $fillable = [
-        'name', 'link', 'link_title', 'images', 'title_image', 'alt_image', 'created_by', 'updated_by', 'status'
+        'name', 'link', 'link_title', 'images', 'title_image', 'alt_image', 'created_by', 'updated_by', 'status', 'description'
     ];
 
     public function User() {
