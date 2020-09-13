@@ -60,6 +60,10 @@
 			<label for="content_about">Nội Dung</label>
 			<textarea id="content_about" name="content_about" class="form-control ckeditor-lfm" rows="4">{!! $home_default->content_about ?? old('content_about') !!}</textarea>
 		  </div>
+		  <div class="form-group">
+			<label for="content_about">Mã Nhúng Video Youtube</label>
+			<textarea id="content_about" name="video_embed_about" class="form-control" rows="3">{!! $home_default->video_embed_about ?? old('video_embed_about') !!}</textarea>
+		  </div>
 
 		  {{-- <div class="row mt-3">
 			<div class="col-md-6">

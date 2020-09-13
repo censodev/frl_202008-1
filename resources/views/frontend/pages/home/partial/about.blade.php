@@ -13,7 +13,12 @@
                 </div>
                 <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
                     <div class="row">
-                        {!! $home_default->content_about !!}
+                        <div class="col-md-6 col-sm-12">
+                            {!! $home_default->content_about !!}
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            {!! $home_default->video_embed_about !!}
+                        </div>
                     </div>
                 </div>
             </div>
