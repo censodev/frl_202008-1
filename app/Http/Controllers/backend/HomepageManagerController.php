@@ -360,7 +360,11 @@ class HomepageManagerController extends Controller
 
                 'title_about'                   => $request->title_about,
                 'content_about'                 => $request->content_about,
+                'images_about'                  => $request->images_about,
+                'title_image_about'             => $request->title_image_about,
+                'alt_image_about'               => $request->alt_image_about,
                 'video_embed_about'             => $request->video_embed_about,
+                'position_about'                => $request->position_about,
 
                 'title_video_hot'               => $request->title_video_hot,
                 'content_video_hot'             => $request->content_video_hot,

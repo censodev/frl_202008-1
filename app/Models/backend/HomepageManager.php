@@ -77,7 +77,11 @@ class HomepageManager extends Model
 
         'title_about',
         'content_about',
+        'images_about',
+        'title_image_about',
+        'alt_image_about',
         'video_embed_about',
+        'position_about',
 
         'title_video_hot',
         'content_video_hot',
