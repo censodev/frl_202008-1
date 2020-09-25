@@ -153,7 +153,7 @@
                         </div>
                     @endif
 
-                    @if($type == 'service')
+                    {{-- @if($type == 'service')
                         @php
                             $listItems = json_decode($section->items, true);
                         @endphp
@@ -189,11 +189,11 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
 
-                    @if ($type == 'video-hot')
+                    @if ($type == 'video')
                         @php
-                            $listItems = json_decode($section->items, true);
+                            $listItems = \App\Models\backend\Video::whereIn('id', $Ids)->where('status',1)->get();
                         @endphp
                         <div class="ereaders-main-section ereaders-blog-gridfull">
                             <div class="container">
@@ -208,20 +208,23 @@
                                         </div>
                                         <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
                                             <ul class="row">
-                                                @foreach ($listItems['video_hot_title'] as $k => $v_title)
-                                                    @if ($v_title)
-                                                        <li class="col-md-4">
-                                                            <div class="ereaders-blog-grid-wrap">
-                                                                <figure>
-                                                                    <a href="#">{!! $listItems['video_hot_embed'][$k] !!}</a>
-                                                                </figure>
-                                                                <div class="ereaders-blog-grid-text">
-                                                                    <h3><a href="#">{{ $v_title }}</a></h3>
-                                                                </div>
+                                                @foreach ($listItems as $item)
+                                                    @php
+                                                        $images = !empty( $item->image ) ? $item->image :
+                                                        asset('assets/admin/dist/img/avatar5.png');
+                                                    @endphp
+                                                    <li class="col-md-4">
+                                                        <div class="ereaders-blog-grid-wrap">
+                                                            <figure>
+                                                                <a target="_blank" href="{{ $item->video_url }}">
+                                                                    <img src="{{ $images }}" alt="{{ $item->alt_image }}">
+                                                                </a>
+                                                            </figure>
+                                                            <div class="ereaders-blog-grid-text">
+                                                                <h3><a target="_blank" href="{{ $item->video_url }}">{{ $item->title }}</a></h3>
                                                             </div>
-                                                        </li>
-                                                    @endif
-                                                    
+                                                        </div>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -231,9 +234,9 @@
                         </div>
                     @endif
 
-                    @if ($type == 'album-hot')
+                    @if ($type == 'album')
                         @php
-                            $listItems = json_decode($section->items, true);
+                            $listItems = \App\Models\backend\Image::whereIn('id', $Ids)->where('status',1)->get();
                         @endphp
                         <div class="ereaders-main-section ereaders-blog-gridfull">
                             <div class="container">
@@ -248,23 +251,60 @@
                                         </div>
                                         <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
                                             <ul class="row">
-                                                @foreach ($listItems['album_hot_title'] as $k => $a_title)
-                                                    @if ($a_title)
-                                                        <li class="col-md-3">
-                                                            <div class="ereaders-blog-grid-wrap">
-                                                                <figure>
-                                                                    <a class="fancybox" rel="gallery1" href="{{ $listItems['album_hot_images'][$k] }}">
-                                                                        <img src="{{ $listItems['album_hot_images'][$k] }}" alt="{{ $listItems['album_hot_alt_images'][$k] }}">
-                                                                    </a>
-                                                                </figure>
-                                                                <div class="ereaders-blog-grid-text">
-                                                                    <h3><a href="#">{{ $a_title }}</a></h3>
-                                                                </div>
+                                                @foreach ($listItems as $item)
+                                                    @php
+                                                        $images = !empty( $item->image ) ? $item->image :
+                                                        asset('assets/admin/dist/img/avatar5.png');
+                                                    @endphp
+                                                    <li class="col-md-3">
+                                                        <div class="ereaders-blog-grid-wrap">
+                                                            <figure>
+                                                                <a class="fancybox" rel="gallery1" href="{{ $images }}">
+                                                                    <img src="{{ $images }}" alt="{{ $item->alt_image }}">
+                                                                </a>
+                                                            </figure>
+                                                            <div class="ereaders-blog-grid-text">
+                                                                <h3><a href="#">{{ $item->title }}</a></h3>
                                                             </div>
-                                                        </li>
-                                                    @endif
+                                                        </div>
+                                                    </li>
                                                 @endforeach
                                             </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if ($type == 'about')
+                        @php
+                            $listItems = \App\Models\backend\About::whereIn('id', $Ids)->where('status',1)->get();
+                            $item = $listItems[0];
+                        @endphp
+                        <div class="ereaders-main-section ereaders-product-gridfull" style="background:#fff">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title" style="margin-bottom:30px">
+                                            <h2 class="bounceIn wow">
+                                                {{ $section->name }}
+                                            </h2>
+                                        </div>
+                                        <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
+                                            <div class="row d-flex" style="{{ $item->position == 1 ? 'flex-direction: row-reverse;' : '' }}">
+                                                <div class="col-md-6 col-sm-12">
+                                                    {!! $item->content !!}
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    @if ($item->image)
+                                                        <img class="w-100" src="{{ $item->image }}"
+                                                            alt="{{ $item->alt_image }}" >
+                                                    @else
+                                                        {!! $item->video_embed !!}
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -307,40 +347,7 @@
                         </div>
                     </div>
                 @endif
-                @if ($type == 'about')
-                    @php
-                        $home_default = \App\Models\backend\HomepageManager::getHomeDefault();
-                    @endphp
-                    <div class="ereaders-main-section ereaders-product-gridfull" style="background:#fff">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="ereaders-fancy-title" style="margin-bottom:30px">
-                                        <h2 class="bounceIn wow">
-                                            {{ $home_default->title_about }}
-                                        </h2>
-                                    </div>
-                                    <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
-                                        <div class="row d-flex" style="{{ $home_default->position_about == 1 ? 'flex-direction: row-reverse;' : '' }}">
-                                            <div class="col-md-6 col-sm-12">
-                                                {!! $home_default->content_about !!}
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                @if ($home_default->images_about)
-                                                    <img class="w-100" src="{{ $home_default->images_about }}"
-                                                        alt="{{ $home_default->alt_image_about }}" 
-                                                        title="{{ $home_default->title_image_about }}">
-                                                @else
-                                                    {!! $home_default->video_embed_about !!}
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
+                
             @endforeach
         @endif
 

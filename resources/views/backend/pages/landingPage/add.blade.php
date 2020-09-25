@@ -192,6 +192,24 @@
                                                 <textarea name="description[]" class="form-control" rows="4"></textarea>
                                             </div>
                                         </div>
+                                        {{-- <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Tiêu Đề Kêu Gọi Hành Động</label>
+                                                <input name="title_action[]" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Icon Kêu Gọi Hành Động</label>
+                                                <input name="icon_action[]" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>ID Form Đăng Ký</label>
+                                                <input name="id_action[]" class="form-control">
+                                            </div>
+                                        </div> --}}
 
                                         <div class="col-md-12 list-value">
                                             <div class="form-group block-search-appliesto">
@@ -204,15 +222,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-12 hide section-service">
-                                            @include('backend.inc-dashboard.service')
-                                        </div>
-                                        <div class="col-md-12 hide section-video-hot">
-                                            @include('backend.inc-dashboard.video-hot')
-                                        </div>
-                                        <div class="col-md-12 hide section-album-hot">
-                                            @include('backend.inc-dashboard.album-hot')
-                                        </div>
                                     </div>
                                 </div>
                             </div>

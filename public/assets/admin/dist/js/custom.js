@@ -46,12 +46,19 @@ $(document).ready(function() {
 
     /* Clone Product */
     $('.btn-clone-product').on('click', function() {
-        var html = $(".area-clone-product-cli").html();
-        $(".increment-product").append(html);
+		var count = $(this).data('count')
+		var html = $(".area-clone-product-cli").html();
+		html = html.replace(/-color-number/g, '-color-' + count);
+		$(".increment-product").append(html);
+		$('.btn-clone-product').data('count', ++count)
 
         $('.btn-remove-product').on('click', function() {
             $(this).parents(".clone-product-cli").remove();
-        });
+		});
+		
+		$('[class*="lfm-mul"]').each(function() {
+	        $(this).filemanager('file');
+	    });
     });
 
 
@@ -113,7 +120,6 @@ $(document).ready(function() {
 	// Clone Service
 	$('.btn-clone-services').on('click', function() {
 		var html = $(".clone-services-area").html();
-		console.log(html)
       	$(".increment-services").append(html);
 
       	$('.btn-remove-service').on('click', function() {
@@ -394,39 +400,12 @@ function run_trigger() {
         var search = 'in' + capitalizeFirstLetter(type);
         var ul_class = 'block-' + type + '-list';
 
-        button.removeClass("article_search product_search slider_search newspaper_search tv_search endow_search");
+        button.removeClass("article_search product_search slider_search newspaper_search tv_search endow_search about_search album_search video_search");
         button.removeAttr('disabled');
         button.addClass(button_class);
         button.attr('data-target', target);
         button.attr('search', search);
-		ul.addClass(ul_class);
-
-		landingPageChooseSection(type, $('select[name="type[]"]').index(this))
-	});
-	
-	function landingPageChooseSection(type, index) {
-		let services = document.querySelectorAll('.section-service')
-		let videoHots = document.querySelectorAll('.section-video-hot')
-		let albumHots = document.querySelectorAll('.section-album-hot')
-		let arr = [
-			services,
-			videoHots,
-			albumHots,
-		]
-		arr.forEach(i => i[index].classList.add('hide'))
-		switch (type) {
-			case 'video-hot':
-				videoHots[index].classList.remove('hide')
-				break;
-			case 'album-hot':
-				albumHots[index].classList.remove('hide')
-				break;
-			case 'service':
-				services[index].classList.remove('hide')
-				break;
-			default:
-				break;
-		}
-	}
+        ul.addClass(ul_class);
+    });
 
 }

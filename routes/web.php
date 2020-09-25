@@ -462,6 +462,18 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
         'as' 	=> 'seeding_fb_comments_change_status',
         'uses' 	=> 'backend\SeedingFbCommentsController@changeStatus',
     ));
+
+    // About
+    Route::resource('about', 'backend\AboutController');
+    Route::any('/About/searchRelative', 'backend\AboutController@searchRelative');
+
+    // Album
+    Route::resource('album', 'backend\ImageController');
+    Route::any('/Album/searchRelative', 'backend\ImageController@searchRelative');
+
+    // Video
+    Route::resource('video', 'backend\VideoController');
+    Route::any('/Video/searchRelative', 'backend\VideoController@searchRelative');
 });
 
 /**

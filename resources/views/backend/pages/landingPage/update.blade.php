@@ -5,6 +5,10 @@
     use App\Models\backend\Newspaper;
     use App\Models\backend\Tv;
     use App\Models\backend\Endow;
+    use App\Models\backend\About;
+    use App\Models\backend\Image;
+    use App\Models\backend\Video;
+    use App\Models\backend\Hot;
 @endphp
 
 @extends($data->layout)
@@ -211,6 +215,24 @@
                                                             <textarea name="description[]" class="form-control" rows="4">{{ $section->description }}</textarea>
                                                         </div>
                                                     </div>
+                                                    {{-- <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Tiêu Đề Kêu Gọi Hành Động</label>
+                                                            <input name="title_action[]" class="form-control" value="{{ $section->title_action ?? '' }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Icon Kêu Gọi Hành Động</label>
+                                                            <input name="icon_action[]" class="form-control" value="{{ $section->icon_action ?? '' }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>ID Form Đăng Ký</label>
+                                                            <input name="id_action[]" class="form-control" value="{{ $section->id_action ?? '' }}">
+                                                        </div>
+                                                    </div> --}}
 
                                                     @php
                                                         $button_class = $section->type .'_search';
@@ -219,16 +241,6 @@
                                                         $ul_class = 'block-'. $section->type .'-list';
                                                         $type = $section->type;
 
-                                                        $services_name = null;
-                                                        $services_url = null;
-                                                        $services_description = null;
-
-                                                        $video_hot_title = null;
-                                                        $video_hot_embed = null;
-
-                                                        $album_hot_title = null;
-                                                        $album_hot_images = null;
-                                                        $album_hot_alt_images = null;
 
                                                         $Ids = $listItems = [];
                                                         if(isset($section->items) && !empty($section->items)) {
@@ -247,6 +259,7 @@
                                                             }
                                                             if($type == 'newspaper'){
                                                                 $listItems              = Newspaper::whereIn('id', $Ids)->where('status',1)->get();
+                                                                $related                = 'related_newspaper[]';
                                                             }
                                                             if($type == 'tv'){
                                                                 $listItems              = Tv::whereIn('id', $Ids)->where('status',1)->get();
@@ -256,19 +269,21 @@
                                                                 $listItems              = Endow::whereIn('id', $Ids)->where('status',1)->get();
                                                                 $related                = 'related_endow[]';
                                                             }
-                                                            if($type == 'service'){
-                                                                $services_name          = json_decode($section->items, true)['services_name'];
-                                                                $services_url           = json_decode($section->items, true)['services_url'];
-                                                                $services_description   = json_decode($section->items, true)['services_description'];
+                                                            if($type == 'about'){
+                                                                $listItems              = About::whereIn('id', $Ids)->where('status',1)->get();
+                                                                $related                = 'related_about[]';
                                                             }
-                                                            if($type == 'video-hot'){
-                                                                $video_hot_title        = json_decode($section->items, true)['video_hot_title'];
-                                                                $video_hot_embed        = json_decode($section->items, true)['video_hot_embed'];
+                                                            if($type == 'album'){
+                                                                $listItems              = Image::whereIn('id', $Ids)->where('status',1)->get();
+                                                                $related                = 'related_album[]';
                                                             }
-                                                            if($type == 'album-hot'){
-                                                                $album_hot_title        = json_decode($section->items, true)['album_hot_title'];
-                                                                $album_hot_images       = json_decode($section->items, true)['album_hot_images'];
-                                                                $album_hot_alt_images   = json_decode($section->items, true)['album_hot_alt_images'];
+                                                            if($type == 'video'){
+                                                                $listItems              = Video::whereIn('id', $Ids)->where('status',1)->get();
+                                                                $related                = 'related_video[]';
+                                                            }
+                                                            if($type == 'hot'){
+                                                                $listItems              = Hot::whereIn('id', $Ids)->where('status',1)->get();
+                                                                $related                = 'related_hot[]';
                                                             }
                                                         }
 
@@ -301,11 +316,19 @@
                                                                                 </span>
                                                                             @if($type == 'product')
                                                                                 <img width="40px" height="40px" src="{{ $images[0] }}" title="{{ $title_image[0] }}" alt="{{ $alt_image[0] }}">
+                                                                            @elseif($type == 'album' || $type == 'video')
+                                                                                <img src="{{ $listItems->image }}" width="40px" height="40px">
+                                                                            @elseif($type == 'tv' || $type == 'newspaper' || $type == 'hot')
+                                                                                <img src="{{ $listItems->images }}" width="40px" height="40px">
                                                                             @else
                                                                                 <img src="{{ $images }}" width="40px" height="40px">
                                                                             @endif
                                                                             <span class="text">
-                                                                                <a href="">{{ $listItems->title }}</a>
+                                                                                @if($type == 'tv' || $type == 'newspaper' || $type == 'endow' || $type == 'hot')
+                                                                                    <a href="">{{ $listItems->name }}</a>
+                                                                                @else
+                                                                                    <a href="">{{ $listItems->title }}</a>
+                                                                                @endif
                                                                             </span>
                                                                             <div class="tools">
                                                                                 <div class="remove-item__action" itemID="{{ $listItems->id }}"><i class="fas fa-trash"></i></div>
@@ -317,15 +340,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-12 {{ $type == 'service' ? '' : 'hide' }} section-service">
-                                                        @include('backend.inc-dashboard.service')
-                                                    </div>
-                                                    <div class="col-md-12 {{ $type == 'video-hot' ? '' : 'hide' }} section-video-hot">
-                                                        @include('backend.inc-dashboard.video-hot')
-                                                    </div>
-                                                    <div class="col-md-12 {{ $type == 'album-hot' ? '' : 'hide' }} section-album-hot">
-                                                        @include('backend.inc-dashboard.album-hot')
-                                                    </div>
                                                 </div>
                                             </div>
                                             @if($key_section > 0)
@@ -435,16 +449,6 @@
 
                                                         </ul>
                                                     </div>
-                                                </div>
-
-                                                <div class="col-md-12 hide section-service">
-                                                    @include('backend.inc-dashboard.service')
-                                                </div>
-                                                <div class="col-md-12 hide section-video-hot">
-                                                    @include('backend.inc-dashboard.video-hot')
-                                                </div>
-                                                <div class="col-md-12 hide section-album-hot">
-                                                    @include('backend.inc-dashboard.album-hot')
                                                 </div>
 
                                             </div>

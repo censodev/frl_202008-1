@@ -34,12 +34,10 @@ class LandingPageController extends Controller
         'tv'        => 'Truyền Hình',
         'endow'     => 'Hậu Mãi',
         'feedback'  => 'Cảm Nhận Khách Hàng',
-
-        'service'   => 'Quy Trình Dịch Vụ',
-        'video-hot' => 'Video Nổi Bật',
-        'album-hot' => 'Album Ảnh Nổi Bật',
-
         'about'     => 'Giới Thiệu',
+        'album'     => 'Album',
+        'video'     => 'Video',
+        'hot'       => 'Danh Mục Nổi Bật',
     ];
     private $keyword = '';
     private $layout  = 'backend.layouts.';
@@ -124,29 +122,17 @@ class LandingPageController extends Controller
             $items = '';
         }
         if($type === 'about'){
-            $items = '';
+            $items = !empty( $request->related_about ) ? Genratejsonarray( $request->related_about ) : '';
         }
-        if($type === 'service'){
-            $items = json_encode([
-                'services_name'         => $request->services_name,
-                'services_url'          => $request->services_url,
-                'services_description'  => $request->services_description,
-            ]);
+        if($type === 'album'){
+            $items = !empty( $request->related_album ) ? Genratejsonarray( $request->related_album ) : '';
         }
-        if($type === 'video-hot'){
-            $items = json_encode([
-                'video_hot_title'       => $request->video_hot_title,
-                'video_hot_embed'       => $request->video_hot_embed,
-            ]);
+        if($type === 'video'){
+            $items = !empty( $request->related_video ) ? Genratejsonarray( $request->related_video ) : '';
         }
-        if($type === 'album-hot'){
-            $items = json_encode([
-                'album_hot_title'       => $request->album_hot_title,
-                'album_hot_images'      => $request->album_hot_images,
-                'album_hot_alt_images'  => $request->album_hot_alt_images,
-            ]);
+        if($type === 'hot'){
+            $items = !empty( $request->related_hot ) ? Genratejsonarray( $request->related_hot ) : '';
         }
-        
 
         return $items;
     }
@@ -181,6 +167,9 @@ class LandingPageController extends Controller
             'title_image_mobile'        => $request->title_image_mobile,
             'alt_image_mobile'          => $request->alt_image_mobile,
             'description'               => $request->description,
+            // 'title_action'              => $request->title_action,
+            // 'icon_action'               => $request->icon_action,
+            // 'id_action'                 => $request->id_action,
         ];
 
         $data = [
@@ -213,6 +202,9 @@ class LandingPageController extends Controller
                     'title_image_mobile'    => $data_section['title_image_mobile'][$key],
                     'alt_image_mobile'      => $data_section['alt_image_mobile'][$key],
                     'description'           => $data_section['description'][$key],
+                    // 'title_action'          => $data_section['title_action'][$key],
+                    // 'icon_action'           => $data_section['icon_action'][$key],
+                    // 'id_action'             => $data_section['id_action'][$key],
                     'created_by'            => $user_id,
                     'status'                => 1,
                 ];
@@ -323,6 +315,9 @@ class LandingPageController extends Controller
                 'title_image_mobile'        => $request->title_image_mobile,
                 'alt_image_mobile'          => $request->alt_image_mobile,
                 'description'               => $request->description,
+                // 'title_action'              => $request->title_action,
+                // 'icon_action'               => $request->icon_action,
+                // 'id_action'                 => $request->id_action,
             ];
 
             $data = [
@@ -376,6 +371,9 @@ class LandingPageController extends Controller
                         'title_image_mobile'    => $data_section['title_image_mobile'][$key],
                         'alt_image_mobile'      => $data_section['alt_image_mobile'][$key],
                         'description'           => $data_section['description'][$key],
+                        // 'title_action'          => $data_section['title_action'][$key],
+                        // 'icon_action'           => $data_section['icon_action'][$key],
+                        // 'id_action'             => $data_section['id_action'][$key],
                         'created_by'            => $user_id,
                         'status'                => 1,
                     ];
