@@ -277,6 +277,49 @@
                         </div>
                     @endif
 
+                    @if ($type == 'hot')
+                        @php
+                            $listItems = \App\Models\backend\Hot::whereIn('id', $Ids)->where('status',1)->get();
+                        @endphp
+                        <div class="ereaders-main-section ereaders-blog-gridfull">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title">
+                                            <h2 class="bounceIn wow">{{ $section->name }}</h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $section->description !!}
+                                            </div>
+                                        </div>
+                                        <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
+                                            <ul class="row">
+                                                @foreach ($listItems as $item)
+                                                    @php
+                                                        $images = !empty( $item->image ) ? $item->image :
+                                                        asset('assets/admin/dist/img/avatar5.png');
+                                                    @endphp
+                                                    <li class="col-md-3">
+                                                        <div class="ereaders-blog-grid-wrap">
+                                                            <figure>
+                                                                <a class="fancybox" rel="gallery1" href="{{ $images }}">
+                                                                    <img src="{{ $images }}" alt="{{ $item->alt_image }}">
+                                                                </a>
+                                                            </figure>
+                                                            <div class="ereaders-blog-grid-text">
+                                                                <h3><a href="#">{{ $item->name }}</a></h3>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     @if ($type == 'about')
                         @php
                             $listItems = \App\Models\backend\About::whereIn('id', $Ids)->where('status',1)->get();

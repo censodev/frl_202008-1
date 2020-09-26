@@ -23,6 +23,9 @@ class LandingPageItem extends Model
         'items',
         'created_by',
         'updated_by',
-        'status'
+        'status',
+        'title_action',
+        'icon_action',
+        'id_action',
     ];
 }
