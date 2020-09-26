@@ -158,7 +158,7 @@
                                                             <input type="number" name="ordering[]" class="form-control" value="{{ $section->ordering }}">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    {{-- <div class="col-md-6">
                                                         <div class="form-group">
                                                             <div id="holder-{{ $key }}" class="thumbnail text-center">
                                                                 <img src="{{ $section->images }}" style="height: 5rem;">
@@ -208,7 +208,7 @@
                                                             <label for="alt_image">Mô Tả Hình Ảnh Mobile</label>
                                                             <input type="text" name="alt_image_mobile[]" placeholder="Nhập mô tả hình ảnh" class="form-control" value="{{ $section->alt_image_mobile }}" required oninvalid="this.setCustomValidity('Vui lòng nhập mô tả.')" oninput="setCustomValidity('')">
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="description">Chi Tiết</label>

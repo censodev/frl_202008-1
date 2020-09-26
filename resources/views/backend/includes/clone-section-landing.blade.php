@@ -30,7 +30,7 @@
                             <input type="number" name="ordering[]" class="form-control" value="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="form-group">
                             <div id="holder-number" class="thumbnail thumbnail-clone text-center"></div>
                             <div class="input-group">
@@ -75,7 +75,7 @@
                             <label for="alt_image">Mô Tả Hình Ảnh Mobile</label>
                             <input type="text" name="alt_image_mobile[]" placeholder="Nhập mô tả hình ảnh" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập mô tả.')" oninput="setCustomValidity('')">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="description">Chi Tiết</label>
