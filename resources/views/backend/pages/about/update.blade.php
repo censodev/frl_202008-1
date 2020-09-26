@@ -55,7 +55,11 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-12">
-                                <label>Nội dung</label>
+                                <label for="alt_image">Mô Tả Nội Dung</label>
+                                <input type="text" id="alt_image" name="alt_image" placeholder="Nhập mô tả nội dung" class="form-control" value="{{ old('alt_image') ?? $data->about->alt_image }}" >
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>Nội Dung</label>
                                 <textarea name="content" class="form-control ckeditor-lfm" rows="4">
                                     {{ old('content') ?? $data->about->content }}
                                 </textarea>
@@ -79,11 +83,6 @@
                                     <div class="form-group col-md-12">
                                         <label for="title_image">Tiêu Đề Hình Ảnh</label>
                                         <input type="text" id="title_image" name="title_image" placeholder="Nhập tiêu đề hình ảnh" class="form-control" value="{{ old('title_image') ?? $data->about->title_image }}">
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="alt_image">Mô Tả Hình Ảnh</label>
-                                        <input type="text" id="alt_image" name="alt_image" placeholder="Nhập mô tả hình ảnh" class="form-control" value="{{ old('alt_image') ?? $data->about->alt_image }}" >
                                     </div>
                                 </div>
                             </div>

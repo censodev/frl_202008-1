@@ -26,6 +26,10 @@
 			<textarea id="video_about" name="video_about" class="form-control" rows="4">{!! $home_default->video_about ?? old('video_about') !!}</textarea>
 		  </div> --}}
 
+			<div class="form-group">
+				<label for="title_image_about">Mô Tả Nội Dung</label>
+				<input type="text" id="title_image_about" name="title_image_about" placeholder="Nhập mô tả nội dung" class="form-control" value="{{ $home_default->title_image_about ?? old('title_image_about') }}">
+			</div>
 		  <div class="form-group">
 			<label for="content_about">Nội Dung</label>
 			<select class="form-control mb-2" name="position_about" id="">
@@ -54,14 +58,7 @@
 		  </div>
 
 		  <div class="row mt-3">
-			<div class="col-md-6">
-			  <div class="form-group">
-				<label for="title_image_about">Tiêu Đề Hình Ảnh</label>
-				<input type="text" id="title_image_about" name="title_image_about" placeholder="Nhập tiêu đề hình ảnh" class="form-control" value="{{ $home_default->title_image_about ?? old('title_image_about') }}">
-			  </div>
-			</div>
-
-			<div class="col-md-6">
+			<div class="col-md-12">
 			  <div class="form-group">
 				<label for="alt_image_about">Mô Tả Hình Ảnh</label>
 				<input type="text" id="alt_image_about" name="alt_image_about" placeholder="Nhập mô tả hình ảnh" class="form-control" value="{{ $home_default->alt_image_about ?? old('alt_image_about') }}">

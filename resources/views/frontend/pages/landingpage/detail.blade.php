@@ -341,6 +341,10 @@
                                             <h2 class="bounceIn wow">
                                                 {{ $section->name }}
                                             </h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $item->title_image !!}
+                                            </div>
                                         </div>
                                         <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
                                             <div class="row d-flex" style="{{ $item->position == 1 ? 'flex-direction: row-reverse;' : '' }}">

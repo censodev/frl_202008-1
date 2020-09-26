@@ -54,6 +54,10 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-12">
+                                <label for="alt_image">Mô Tả Nội dung</label>
+                                <input type="text" id="alt_image" name="alt_image" placeholder="Nhập mô tả nội dung" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập mô tả.')" oninput="setCustomValidity('')">
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label>Nội dung</label>
                                 <textarea name="content" class="form-control ckeditor-lfm" rows="4"></textarea>
                             </div>
@@ -76,11 +80,6 @@
                                     <div class="form-group col-md-12">
                                         <label for="title_image">Tiêu Đề Hình Ảnh</label>
                                         <input type="text" id="title_image" name="title_image" placeholder="Nhập tiêu đề hình ảnh" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập tiêu đề.')" oninput="setCustomValidity('')">
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="alt_image">Mô Tả Hình Ảnh</label>
-                                        <input type="text" id="alt_image" name="alt_image" placeholder="Nhập mô tả hình ảnh" class="form-control" value="" required oninvalid="this.setCustomValidity('Vui lòng nhập mô tả.')" oninput="setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>

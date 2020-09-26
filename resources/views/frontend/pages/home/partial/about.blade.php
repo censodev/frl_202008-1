@@ -6,6 +6,10 @@
                     <h2 class="bounceIn wow">
                         {{ $home_default->title_about }}
                     </h2>
+                    <div class="clearfix"></div>
+                    <div class="fadeInRight wow">
+                        {!! $home_default->title_image_about !!}
+                    </div>
                 </div>
                 <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
                     <div class="row d-flex" style="{{ $home_default->position_about == 1 ? 'flex-direction: row-reverse;' : '' }}">
