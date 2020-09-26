@@ -405,7 +405,31 @@ function run_trigger() {
         button.addClass(button_class);
         button.attr('data-target', target);
         button.attr('search', search);
-        ul.addClass(ul_class);
-    });
+		ul.addClass(ul_class);
+		landingPageChooseSection(type, $('select[name="type[]"]').index(this))
+	});
+	
+	function landingPageChooseSection(type, index) {
+		let services = document.querySelectorAll('.section-service')
+		let arr = [
+			services,
+		]
+		arr.forEach(i => i[index].classList.add('hide'))
+		switch (type) {
+			case 'service':
+				services[index].classList.remove('hide')
+				$('.btn-clone-services').on('click', function() {
+					var html = $(".clone-services-area").html();
+					  $(".increment-services").append(html);
+			
+					  $('.btn-remove-service').on('click', function() {
+						$(this).parents(".clone-service-cli").remove();
+					});
+				});
+				break;
+			default:
+				break;
+		}
+	}
 
 }

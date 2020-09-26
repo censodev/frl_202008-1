@@ -192,7 +192,7 @@
                                                 <textarea name="description[]" class="form-control" rows="4"></textarea>
                                             </div>
                                         </div>
-                                        {{-- <div class="col-md-4">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Tiêu Đề Kêu Gọi Hành Động</label>
                                                 <input name="title_action[]" class="form-control">
@@ -209,7 +209,7 @@
                                                 <label>ID Form Đăng Ký</label>
                                                 <input name="id_action[]" class="form-control">
                                             </div>
-                                        </div> --}}
+                                        </div>
 
                                         <div class="col-md-12 list-value">
                                             <div class="form-group block-search-appliesto">
@@ -221,7 +221,9 @@
                                                 </ul>
                                             </div>
                                         </div>
-
+                                        <div class="col-md-12 hide section-service">
+                                            @include('backend.inc-dashboard.service')
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -38,6 +38,7 @@ class LandingPageController extends Controller
         'album'     => 'Album',
         'video'     => 'Video',
         'hot'       => 'Danh Mục Nổi Bật',
+        'service'   => 'Quy Trình Dịch Vụ',
     ];
     private $keyword = '';
     private $layout  = 'backend.layouts.';
@@ -133,6 +134,13 @@ class LandingPageController extends Controller
         if($type === 'hot'){
             $items = !empty( $request->related_hot ) ? Genratejsonarray( $request->related_hot ) : '';
         }
+        if($type === 'service'){
+            $items = json_encode([
+                'services_name'         => $request->services_name,
+                'services_url'          => $request->services_url,
+                'services_description'  => $request->services_description,
+            ]);
+        }
 
         return $items;
     }
@@ -167,9 +175,9 @@ class LandingPageController extends Controller
             'title_image_mobile'        => $request->title_image_mobile,
             'alt_image_mobile'          => $request->alt_image_mobile,
             'description'               => $request->description,
-            // 'title_action'              => $request->title_action,
-            // 'icon_action'               => $request->icon_action,
-            // 'id_action'                 => $request->id_action,
+            'title_action'              => $request->title_action,
+            'icon_action'               => $request->icon_action,
+            'id_action'                 => $request->id_action,
         ];
 
         $data = [
@@ -202,9 +210,9 @@ class LandingPageController extends Controller
                     'title_image_mobile'    => $data_section['title_image_mobile'][$key],
                     'alt_image_mobile'      => $data_section['alt_image_mobile'][$key],
                     'description'           => $data_section['description'][$key],
-                    // 'title_action'          => $data_section['title_action'][$key],
-                    // 'icon_action'           => $data_section['icon_action'][$key],
-                    // 'id_action'             => $data_section['id_action'][$key],
+                    'title_action'          => $data_section['title_action'][$key],
+                    'icon_action'           => $data_section['icon_action'][$key],
+                    'id_action'             => $data_section['id_action'][$key],
                     'created_by'            => $user_id,
                     'status'                => 1,
                 ];
@@ -315,9 +323,9 @@ class LandingPageController extends Controller
                 'title_image_mobile'        => $request->title_image_mobile,
                 'alt_image_mobile'          => $request->alt_image_mobile,
                 'description'               => $request->description,
-                // 'title_action'              => $request->title_action,
-                // 'icon_action'               => $request->icon_action,
-                // 'id_action'                 => $request->id_action,
+                'title_action'              => $request->title_action,
+                'icon_action'               => $request->icon_action,
+                'id_action'                 => $request->id_action,
             ];
 
             $data = [
@@ -371,9 +379,9 @@ class LandingPageController extends Controller
                         'title_image_mobile'    => $data_section['title_image_mobile'][$key],
                         'alt_image_mobile'      => $data_section['alt_image_mobile'][$key],
                         'description'           => $data_section['description'][$key],
-                        // 'title_action'          => $data_section['title_action'][$key],
-                        // 'icon_action'           => $data_section['icon_action'][$key],
-                        // 'id_action'             => $data_section['id_action'][$key],
+                        'title_action'          => $data_section['title_action'][$key],
+                        'icon_action'           => $data_section['icon_action'][$key],
+                        'id_action'             => $data_section['id_action'][$key],
                         'created_by'            => $user_id,
                         'status'                => 1,
                     ];

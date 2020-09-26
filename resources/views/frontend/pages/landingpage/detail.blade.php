@@ -153,7 +153,7 @@
                         </div>
                     @endif
 
-                    {{-- @if($type == 'service')
+                    @if($type == 'service')
                         @php
                             $listItems = json_decode($section->items, true);
                         @endphp
@@ -189,7 +189,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif --}}
+                    @endif
 
                     @if ($type == 'video')
                         @php

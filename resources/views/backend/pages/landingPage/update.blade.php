@@ -215,7 +215,7 @@
                                                             <textarea name="description[]" class="form-control" rows="4">{{ $section->description }}</textarea>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="col-md-4">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Tiêu Đề Kêu Gọi Hành Động</label>
                                                             <input name="title_action[]" class="form-control" value="{{ $section->title_action ?? '' }}">
@@ -232,7 +232,7 @@
                                                             <label>ID Form Đăng Ký</label>
                                                             <input name="id_action[]" class="form-control" value="{{ $section->id_action ?? '' }}">
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
 
                                                     @php
                                                         $button_class = $section->type .'_search';
@@ -241,6 +241,9 @@
                                                         $ul_class = 'block-'. $section->type .'-list';
                                                         $type = $section->type;
 
+                                                        $services_name = null;
+                                                        $services_url = null;
+                                                        $services_description = null;
 
                                                         $Ids = $listItems = [];
                                                         if(isset($section->items) && !empty($section->items)) {
@@ -284,6 +287,11 @@
                                                             if($type == 'hot'){
                                                                 $listItems              = Hot::whereIn('id', $Ids)->where('status',1)->get();
                                                                 $related                = 'related_hot[]';
+                                                            }
+                                                            if($type == 'service'){
+                                                                $services_name          = json_decode($section->items, true)['services_name'];
+                                                                $services_url           = json_decode($section->items, true)['services_url'];
+                                                                $services_description   = json_decode($section->items, true)['services_description'];
                                                             }
                                                         }
 
@@ -339,7 +347,9 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-12 {{ $type == 'service' ? '' : 'hide' }} section-service">
+                                                        @include('backend.inc-dashboard.service')
+                                                    </div>
                                                 </div>
                                             </div>
                                             @if($key_section > 0)
@@ -450,7 +460,9 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-md-12 hide section-service">
+                                                    @include('backend.inc-dashboard.service')
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
