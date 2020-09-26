@@ -1,4 +1,4 @@
-<div class="d-flex flex-column fb-container ereaders-main-section">
+<div class="d-flex flex-column fb-container ereaders-main-section" style="padding-top: 20px!important">
     <div class="container">
         @if (!is_null($data['fb_comments']) && count($data['fb_comments']) > 0)
             <style>

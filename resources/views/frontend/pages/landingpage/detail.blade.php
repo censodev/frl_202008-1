@@ -33,6 +33,14 @@
         <div class="ereaders-main-content ereaders-content-padding">
 
         @if(!empty($sections) && count($sections) > 0)
+            <style>
+                .ereaders-main-section:nth-child(2n) {
+                    background-color: #f7f7f7 !important;
+                }
+                .ereaders-main-section:nth-child(2n+1) {
+                    background-color: #fff !important;
+                }
+            </style>
             @foreach($sections as $key => $section)
                 @php
                     $type = $section->type;

@@ -58,7 +58,14 @@
         <!-- Slider Section -->
         @include('frontend.pages.home.partial.slider')
         <!-- End Slider Section -->
-
+        <style>
+            .ereaders-main-section:nth-child(2n) {
+                background-color: #f7f7f7 !important;
+            }
+            .ereaders-main-section:nth-child(2n+1) {
+                background-color: #fff !important;
+            }
+        </style>
         <div class="ereaders-main-content ereaders-content-padding">
 
             <!-- counter Section -->
