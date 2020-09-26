@@ -74,6 +74,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
 
@@ -102,6 +103,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
 
@@ -158,6 +160,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
 
@@ -196,6 +199,7 @@
                                     </aside>
                                 </div>
                             </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
 
@@ -239,6 +243,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
 
@@ -282,6 +287,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
 
@@ -325,6 +331,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
 
@@ -364,6 +371,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
                 @endif
@@ -400,6 +408,7 @@
                                 </div>
                             </div>
                         </div>
+                        {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                     </div>
                 @endif
                 

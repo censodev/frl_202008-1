@@ -229,7 +229,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>ID Form Đăng Ký</label>
+                                                            <label>Số Điện Thoại</label>
                                                             <input name="id_action[]" class="form-control" value="{{ $section->id_action ?? '' }}">
                                                         </div>
                                                     </div>

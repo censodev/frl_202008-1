@@ -568,4 +568,14 @@ use App\Models\backend\Url;
 
         return $html;
     }
+
+    function render_action_button($title, $icon, $action)
+    {
+        $param = [
+            'title'     => $title,
+            'icon'      => $icon,
+            'action'    => $action,
+        ];
+        return view('frontend.pages.landingpage.action-button', $param)->render();
+    }
 ?>
