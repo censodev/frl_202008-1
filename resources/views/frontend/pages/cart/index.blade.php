@@ -120,7 +120,7 @@
                                                 <div class="billing-info">
                                                     <input name="address" type="text" class="form-control" placeholder="Địa chỉ (*)" required>
                                                 </div>
-                                                <div class="billing-info province-country">
+                                                {{-- <div class="billing-info province-country">
                                                     <div class="row">
                                                         <div class="order-province col-md-6 col-sm-6">
                                                             <input name="province" type="text" class="form-control" placeholder="Tỉnh (*)">
@@ -129,7 +129,7 @@
                                                             <input name="country" type="text" class="form-control" placeholder="Quốc gia (*)">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="billing-info order-email">
                                                     <input name="email" type="text" class="form-control" placeholder="Email (*)">
                                                 </div>
@@ -144,7 +144,7 @@
                                                         <input type="radio" value="COD" name="pay_method" checked>
                                                         <label>Thanh toán khi giao hàng (COD)</label>
                                                     </div>
-                                                    <div class="single-ship">
+                                                    {{-- <div class="single-ship">
                                                         <input type="radio" value="Visa/Master/JCB" name="pay_method">
                                                         <label>Visa/Master/JCB</label>
                                                     </div>
@@ -167,7 +167,7 @@
                                                     <div class="single-ship">
                                                         <input type="radio" value="TRA_GOP" name="pay_method">
                                                         <label>Thanh toán trả góp</label>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <h6 class="red-text">Phí ship: Cửa hàng liên hệ lại với khách hàng</h6>
                                                 <div class="billing-back-btn">

@@ -131,10 +131,10 @@ class ShoppingController extends Controller
         $table_customer .= '</tbody></table>';
 
 
-        $content_qrcode = QrCode::format('png')->size(300)->generate(time());
-        $name_img_qr_code = time() . '.png';
-        Storage::disk('qr_code')->put($name_img_qr_code, $content_qrcode);
-        $link_image_qrcode = $host . '/qr_code/' . $name_img_qr_code;
+        // $content_qrcode = QrCode::format('png')->size(300)->generate(time());
+        // $name_img_qr_code = time() . '.png';
+        // Storage::disk('qr_code')->put($name_img_qr_code, $content_qrcode);
+        // $link_image_qrcode = $host . '/qr_code/' . $name_img_qr_code;
 
         $array_begin = ['date_cart', 'pay_method_cart', 'table_cart', 'table_customer'];
         $array_change = [$date_cart, $this->methods[$data_order['pay_method']], $table_cart, $table_customer];
@@ -145,7 +145,7 @@ class ShoppingController extends Controller
         $this->sendMail($request_name, $email->smtp_email, true, $body_note);
 
         //add order
-        $data_order['image_qr_code'] = $name_img_qr_code;
+        // $data_order['image_qr_code'] = $name_img_qr_code;
         $order = Order::create($data_order);
 
         return View($data->view,compact('data'));
