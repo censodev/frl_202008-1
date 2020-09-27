@@ -128,7 +128,7 @@ class ImageController extends Controller
         $error          = 'Đã có lỗi xảy ra trong quá trình cập nhật. Vui lòng thử lại.';
     
         try {
-            $about = \App\Models\backend\About::where('id', $id)->update([
+            $about = \App\Models\backend\Image::where('id', $id)->update([
                 'title'         => $request->title,
                 'image'         => $request->image,
                 'alt_image'     => $request->alt_image,
