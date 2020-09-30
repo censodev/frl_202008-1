@@ -179,7 +179,7 @@
                                                             <div class="ereaders-service-grid-text">
                                                                 {!! $item->icon !!}
                                                                 <h5><a href="#">{{ $item->name }}</a></h5>
-                                                                {!! substr($item->description,0,160) !!}
+                                                                {!! $item->description !!}
                                                             </div>
                                                         </li>
                                                     @endforeach
