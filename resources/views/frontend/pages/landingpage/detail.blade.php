@@ -20,6 +20,7 @@
 @endsection
 
 @section($data->content)
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.14/dist/css/splide.min.css">
     @php
         $landingPage = $data['landingPage'];
     @endphp
@@ -367,6 +368,20 @@
                     @endif
 
                     @if ($type == 'about')
+                        <style>
+                            .about-content p {
+                                position: relative;
+                                padding-left: 40px;
+                            }
+                            .about-content p::before {
+                                content: '☆';
+                                color: #00aff0;
+                                position: absolute;
+                                left: -10px;
+                                font-size: 50px;
+                                margin-top: 14px;
+                            }
+                        </style>
                         @php
                             $listItems = \App\Models\backend\About::whereIn('id', $Ids)->where('status',1)->get();
                             $item = $listItems[0];
@@ -386,13 +401,28 @@
                                         </div>
                                         <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
                                             <div class="row d-flex" style="{{ $item->position == 1 ? 'flex-direction: row-reverse;' : '' }}">
-                                                <div class="col-md-6 col-sm-12">
+                                                <div class="col-md-6 col-sm-12 about-content">
                                                     {!! $item->content !!}
                                                 </div>
-                                                <div class="col-md-6 col-sm-12">
+                                                <div class="col-md-6 col-sm-12 owl-carousel-about owl-theme">
                                                     @if ($item->image)
-                                                        <img class="w-100" src="{{ $item->image }}"
-                                                            alt="{{ $item->alt_image }}" >
+                                                        @php
+                                                            $images = !empty( $item->image ) ? explode(',', $item->image) :
+                                                            asset('assets/admin/dist/img/avatar5.png');
+                                                        @endphp
+                                                        <div class="splide">
+                                                            <div class="splide__track">
+                                                                <ul class="splide__list">
+                                                                    @foreach ($images as $k => $img)
+                                                                        <li class="splide__slide">
+                                                                            <img class="w-100" src="{{ $img }}"
+                                                                                alt="{{ $item->alt_image }}" >
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        
                                                     @else
                                                         {!! $item->video_embed !!}
                                                     @endif
@@ -448,4 +478,11 @@
 
         </div>
     @endif
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.14/dist/js/splide.min.js"></script>
+    <script>
+        new Splide( '.splide', {
+            type  : 'fade',
+            rewind: true,
+        } ).mount();
+    </script>
 @endsection
