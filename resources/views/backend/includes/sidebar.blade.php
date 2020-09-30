@@ -547,7 +547,7 @@
               <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
-                      Ưu Đãi
+                      Hậu Mãi
                       <i class="fas fa-angle-left right"></i>
                       <span class="badge badge-info right">2</span>
                   </p>
@@ -562,7 +562,7 @@
                   <li class="nav-item">
                       <a href="{{ route('endow.create') }}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Thêm Ưu Đãi</p>
+                          <p>Thêm Mới</p>
                       </a>
                   </li>
               </ul>
