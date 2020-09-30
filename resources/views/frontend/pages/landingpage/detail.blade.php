@@ -292,17 +292,19 @@
                                         </div>
                                         <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
                                             <ul class="row">
-                                                @foreach ($listItems as $item)
+                                                @foreach ($listItems as $key => $item)
                                                     @php
-                                                        $images = !empty( $item->image ) ? $item->image :
+                                                        $images = !empty( $item->image ) ? explode(',', $item->image) :
                                                         asset('assets/admin/dist/img/avatar5.png');
                                                     @endphp
                                                     <li class="col-md-3">
                                                         <div class="ereaders-blog-grid-wrap">
                                                             <figure>
-                                                                <a class="fancybox" rel="gallery1" href="{{ $images }}">
-                                                                    <img src="{{ $images }}" alt="{{ $item->alt_image }}">
-                                                                </a>
+                                                                @foreach ($images as $k => $img)
+                                                                    <a {{ $k == 0 ? '' : 'hidden' }} class="fancybox" rel="gallery{{ $key }}" href="{{ $img }}">
+                                                                        <img src="{{ $img }}" alt="{{ $item->alt_image }}">
+                                                                    </a>
+                                                                @endforeach
                                                             </figure>
                                                             <div class="ereaders-blog-grid-text">
                                                                 <h3><a href="#">{{ $item->title }}</a></h3>
