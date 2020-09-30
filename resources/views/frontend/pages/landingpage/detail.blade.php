@@ -111,6 +111,34 @@
                         @php
                             $listItems              = Slider::whereIn('id', $Ids)->where('status',1)->get();
                         @endphp
+                        <div id="slideshow-menu p-0">
+                            <div class="row wp-slideshow-menu" >
+                                {{-- <div class="col-lg-3 wp-menu">
+                                    @include('frontend.pages.home.partial.sidebar-menu')
+                                </div> --}}
+                                <div class="col-md-12">
+                                    <div class="ereaders-banner">
+                                        @if( !empty( $listItems ) && count( $listItems ) > 0 )
+                                            @if( !empty( $listItems[0] ) )
+                                                @php
+                                                    $slider_images  = !empty( $listItems[0]->images ) ? json_decode( $listItems[0]->images ) : [];
+                                                    $title_image    = !empty( $listItems[0]->title_image ) ? json_decode( $listItems[0]->title_image ) : [];
+                                                    $alt_image      = !empty( $listItems[0]->alt_image ) ? json_decode( $listItems[0]->alt_image ) : [];
+                                                    $button_title   = !empty( $listItems[0]->button_title ) ? json_decode( $listItems[0]->button_title ) : [];
+                                                    $button_link    = !empty( $listItems[0]->button_link ) ? json_decode( $listItems[0]->button_link ) : [];
+                                                @endphp
+                        
+                                                @foreach( $slider_images as $key => $images )
+                                                    <div class="ereaders-banner-layer">
+                                                        <img src="{{ $images }}" alt="{{ $alt_image[$key] }}" title="{{ $title_image[$key] }}" style="width: 100%;">
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
                     @if($type == 'newspaper')
@@ -322,6 +350,7 @@
                                                             </figure>
                                                             <div class="ereaders-blog-grid-text">
                                                                 <h3><a href="#">{{ $item->name }}</a></h3>
+                                                                <p>{{ $item->description }}</p>
                                                             </div>
                                                         </div>
                                                     </li>

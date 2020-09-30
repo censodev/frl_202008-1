@@ -14,18 +14,20 @@
                 <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
                     <ul class="row">
                         @foreach ($album_hot_title as $k => $a_title)
-                            <li class="col-md-3">
-                                <div class="ereaders-blog-grid-wrap">
-                                    <figure>
-                                        <a class="fancybox" rel="gallery1" href="{{ $album_hot_images[$k] }}">
-                                            <img src="{{ $album_hot_images[$k] }}" alt="{{ $album_hot_alt_images[$k] }}">
-                                        </a>
-                                    </figure>
-                                    <div class="ereaders-blog-grid-text">
-                                        <h3><a href="#">{{ $a_title }}</a></h3>
+                            @if ($a_title)
+                                <li class="col-md-3">
+                                    <div class="ereaders-blog-grid-wrap">
+                                        <figure>
+                                            <a class="fancybox" rel="gallery1" href="{{ $album_hot_images[$k] }}">
+                                                <img src="{{ $album_hot_images[$k] }}" alt="{{ $album_hot_alt_images[$k] }}">
+                                            </a>
+                                        </figure>
+                                        <div class="ereaders-blog-grid-text">
+                                            <h3><a href="#">{{ $a_title }}</a></h3>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>

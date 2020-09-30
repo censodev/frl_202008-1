@@ -13,6 +13,7 @@
                     <div class="ereaders-blog ereaders-blog-grid fadeInUp wow">
                         <ul class="row">
                             @foreach ($video_hot_title as $k => $v_title)
+                                @if ($v_title)
                                 <li class="col-md-4">
                                     <div class="ereaders-blog-grid-wrap">
                                         <figure>
@@ -23,6 +24,7 @@
                                         </div>
                                     </div>
                                 </li>
+                                @endif
                             @endforeach
                         </ul>
                     </div>

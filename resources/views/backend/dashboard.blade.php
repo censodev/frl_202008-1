@@ -92,8 +92,8 @@
           @include('backend.inc-dashboard.service')
           @include('backend.inc-dashboard.hot')
           {{-- @include('backend.inc-dashboard.hot-2') --}}
-          @include('backend.inc-dashboard.product-hot')
-          @include('backend.inc-dashboard.product-sale')
+          {{-- @include('backend.inc-dashboard.product-hot') --}}
+          {{-- @include('backend.inc-dashboard.product-sale') --}}
           {{-- @include('backend.inc-dashboard.post-hot') --}}
           @include('backend.inc-dashboard.video-hot')
           @include('backend.inc-dashboard.album-hot')

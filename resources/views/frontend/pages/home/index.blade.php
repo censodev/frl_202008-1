@@ -91,11 +91,11 @@
             <!-- End danh mục nổi bật Section -->
 
             <!-- danh mục nổi bật Section -->
-            @include('frontend.pages.home.partial.product-hot')
+            {{-- @include('frontend.pages.home.partial.product-hot') --}}
             <!-- End danh mục nổi bật Section -->
 
             <!-- danh mục nổi bật Section -->
-            @include('frontend.pages.home.partial.product-sale')
+            {{-- @include('frontend.pages.home.partial.product-sale') --}}
             <!-- End danh mục nổi bật Section -->
 
             <!-- danh mục nổi bật Section -->
