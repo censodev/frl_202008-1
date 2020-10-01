@@ -299,7 +299,7 @@
                                                         $images = !empty( $item->image ) ? explode(',', $item->image) :
                                                         asset('assets/admin/dist/img/avatar5.png');
                                                     @endphp
-                                                    <li class="col-md-3">
+                                                    <li class="col-md-4">
                                                         <div class="ereaders-blog-grid-wrap">
                                                             <figure>
                                                                 @foreach ($images as $k => $img)
@@ -369,25 +369,25 @@
                     @endif
 
                     @if ($type == 'about')
-                        <style>
-                            .about-content p {
-                                position: relative;
-                                padding-left: 40px;
-                            }
-                            .about-content p::before {
-                                content: '☆';
-                                color: #00aff0;
-                                position: absolute;
-                                left: -10px;
-                                font-size: 50px;
-                                margin-top: 14px;
-                            }
-                        </style>
                         @php
                             $listItems = \App\Models\backend\About::whereIn('id', $Ids)->where('status',1)->get();
                             $item = $listItems[$countAbout++];
                         @endphp
                         <div class="ereaders-main-section ereaders-product-gridfull" style="background:#fff">
+                            <style>
+                                .about-content p {
+                                    position: relative;
+                                    padding-left: 40px;
+                                }
+                                .about-content p::before {
+                                    content: '☆';
+                                    color: #00aff0;
+                                    position: absolute;
+                                    left: -10px;
+                                    font-size: 50px;
+                                    margin-top: 14px;
+                                }
+                            </style>
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -458,7 +458,7 @@
                                             <div class="row d-flex">
                                                 <div class="col-md-12 col-sm-12">
                                                     <style>
-                                                        table { width: auto!important; max-width: 100%; }
+                                                        table { width:90%!important; margin:0 auto; }
                                                     </style>
                                                     {!! $item !!}
                                                 </div>
