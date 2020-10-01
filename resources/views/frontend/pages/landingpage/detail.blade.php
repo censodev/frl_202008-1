@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.14/dist/css/splide.min.css">
     @php
         $landingPage = $data['landingPage'];
+        $countAbout = 0;
     @endphp
 
     @if( $landingPage )
@@ -384,7 +385,7 @@
                         </style>
                         @php
                             $listItems = \App\Models\backend\About::whereIn('id', $Ids)->where('status',1)->get();
-                            $item = $listItems[0];
+                            $item = $listItems[$countAbout++];
                         @endphp
                         <div class="ereaders-main-section ereaders-product-gridfull" style="background:#fff">
                             <div class="container">
