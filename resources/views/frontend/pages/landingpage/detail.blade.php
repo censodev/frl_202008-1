@@ -436,6 +436,40 @@
                             {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
                         </div>
                     @endif
+
+                    @if ($type == 'table')
+                        @php
+                            $item = $section->items
+                        @endphp
+                        <div class="ereaders-main-section ereaders-product-gridfull" style="background:#fff">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="ereaders-fancy-title" style="margin-bottom:30px">
+                                            <h2 class="bounceIn wow">
+                                                {{ $section->name }}
+                                            </h2>
+                                            <div class="clearfix"></div>
+                                            <div class="fadeInRight wow">
+                                                {!! $section->description !!}
+                                            </div>
+                                        </div>
+                                        <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
+                                            <div class="row d-flex">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <style>
+                                                        table { width: auto!important; max-width: 100%; }
+                                                    </style>
+                                                    {!! $item !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {!! render_action_button($section->title_action, $section->icon_action, $section->id_action) !!}
+                        </div>
+                    @endif
                 @endif
                 @if ($type == 'feedback')
                     <div class="ereaders-main-section ereaders-testimonialfull">

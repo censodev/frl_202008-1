@@ -39,6 +39,7 @@ class LandingPageController extends Controller
         'video'     => 'Video',
         'hot'       => 'Danh Mục Nổi Bật',
         'service'   => 'Quy Trình Dịch Vụ',
+        'table'     => 'Bảng biểu',
     ];
     private $keyword = '';
     private $layout  = 'backend.layouts.';
@@ -140,6 +141,9 @@ class LandingPageController extends Controller
                 'services_url'          => $request->services_url,
                 'services_description'  => $request->services_description,
             ]);
+        }
+        if($type == 'table'){
+            $items = $request->table_editor;
         }
 
         return $items;

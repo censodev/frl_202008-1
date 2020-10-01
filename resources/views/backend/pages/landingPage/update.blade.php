@@ -293,6 +293,9 @@
                                                                 $services_url           = json_decode($section->items, true)['services_url'];
                                                                 $services_description   = json_decode($section->items, true)['services_description'];
                                                             }
+                                                            if($type == 'table'){
+                                                                $table_editor           = $section->items;
+                                                            }
                                                         }
 
                                                     @endphp
@@ -349,6 +352,11 @@
                                                     </div>
                                                     <div class="col-md-12 {{ $type == 'service' ? '' : 'hide' }} section-service">
                                                         @include('backend.inc-dashboard.service')
+                                                    </div>
+                                                    <div class="col-md-12 {{ $type == 'table' ? '' : 'hide' }} table-editor">
+                                                        <textarea class="ckeditor-lfm" name="table_editor" id="" rows="10">
+                                                            {!! $table_editor ?? '' !!}
+                                                        </textarea>
                                                     </div>
                                                 </div>
                                             </div>

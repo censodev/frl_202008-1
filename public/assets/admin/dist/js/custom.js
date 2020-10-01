@@ -82,8 +82,15 @@ $(document).ready(function() {
 
         $('[class*="lfm-mul"]').each(function() {
             $(this).filemanager('file');
-        });
-
+		});
+		
+		var options = {
+			filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+			filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+			filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+			filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+		};
+		$('[name=table_editor]').ckeditor(options);
         count_section++;
     });
 
@@ -411,8 +418,10 @@ function run_trigger() {
 	
 	function landingPageChooseSection(type, index) {
 		let services = document.querySelectorAll('.section-service')
+		let tables = document.querySelectorAll('.table-editor')
 		let arr = [
 			services,
+			tables,
 		]
 		arr.forEach(i => i[index].classList.add('hide'))
 		switch (type) {
@@ -426,6 +435,9 @@ function run_trigger() {
 						$(this).parents(".clone-service-cli").remove();
 					});
 				});
+				break;
+			case 'table':
+				tables[index].classList.remove('hide')
 				break;
 			default:
 				break;
