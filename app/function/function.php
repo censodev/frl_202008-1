@@ -214,13 +214,13 @@ use App\Models\backend\Url;
                                     <figure><a href="'.url( $item->alias ) .'"><img src="'. $item->images .'" alt="'.$item->alt_image .'" title="'.$item->title_image .'" ></a></figure>
                                     <div class="ereaders-blog-grid-text">
                                         <h3><a href="'.url( $item->alias ) .'">'.$item->title .'</a></h3>
-                                        '. $item->sapo .'   
+                                        '. limit_text($item->seo_desciption, 23) .'   
                                         <ul class="ereaders-blog-option">
                                             <li><i class="fa fa-clock-o" aria-hidden="true"></i> '. $post_date .'</li>
                                             <li><i class="fa fa-eye" aria-hidden="true"></i> '. $item->view .'</li>
                                             <li><i class="fa fa-star" aria-hidden="true"></i> '.  $item->rating .'</li>
                                         </ul>
-                                        <a href="'. url( $item->alias ) .' class="ereaders-readmore-btn">Chi Tiết <i class="fa fa-angle-double-right"></i></a>
+                                        <a style="display:block;" href="'. url( $item->alias ) .' class="ereaders-readmore-btn">Chi Tiết <i class="fa fa-angle-double-right"></i></a>
                                     </div>
                                 </div>
                             </li>';
@@ -229,6 +229,15 @@ use App\Models\backend\Url;
 
         return $html;
 
+    }
+
+    function limit_text($text, $limit) {
+        if (str_word_count($text, 0) > $limit) {
+            $words = str_word_count($text, 2);
+            $pos   = array_keys($words);
+            $text  = substr($text, 0, $pos[$limit]) . '...';
+        }
+        return $text;
     }
 
     function render_list($data, $type) {

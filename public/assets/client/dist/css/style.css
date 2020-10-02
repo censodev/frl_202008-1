@@ -5168,6 +5168,7 @@ button:focus {
     position: relative;
     display: inline-block;
     margin-left: 30px;
+    display: none!important;
 }
 button.icon-cart i.cart-bag {
     border-right: 1px solid #00aff0;
@@ -6372,7 +6373,8 @@ input[type=number]::-webkit-outer-spin-button {
 .search-header-form{
     display: inline-block;
     width: 300px;
-    max-width: 300px;
+    /* max-width: 300px; */
+    max-width: 200px;
     margin-left: 30px;
 }
 .search-header-form form{
@@ -6380,9 +6382,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .search-header-form form .form-group{
-    position: absolute;
+    /* position: absolute;
     width: 100%;
-    top: -33px;
+    top: -33px; */
 }
 
 .search-header-form .input-search {

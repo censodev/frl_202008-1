@@ -1,3 +1,13 @@
+<style>
+    .about-container {
+        display: flex;
+    }
+    @media (max-width: 768px) {
+        .about-container {
+            display: block;
+        }
+    }
+</style>
 <div class="ereaders-main-section ereaders-product-gridfull" style="background:#fff">
     <div class="container">
         <div class="row">
@@ -12,7 +22,7 @@
                     </div>
                 </div>
                 <div class="ereaders-shop ereaders-shop-grid fadeInUp wow">
-                    <div class="row d-flex" style="{{ $home_default->position_about == 1 ? 'flex-direction: row-reverse;' : '' }}">
+                    <div class="row about-container" style="{{ $home_default->position_about == 1 ? 'flex-direction: row-reverse;' : '' }}">
                         <div class="col-md-6 col-sm-12">
                             {!! $home_default->content_about !!}
                         </div>

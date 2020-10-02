@@ -23,6 +23,9 @@ use App\Models\backend\ProductItem;
 @endphp
 
 @section($data->content)
+    <style>
+        #slideshow-menu { display: none!important; }
+    </style>
     @include('frontend.includes.breadcrumb')
 
     <div class="ereaders-main-content">
