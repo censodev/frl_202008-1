@@ -35,7 +35,7 @@
     <!-- End Script -->
 
     <!-- Social -->
-{{--    @include('frontend.includes.social')--}}
+    @include('frontend.includes.social')
     <!-- End Social -->
 
     <!-- Search Form -->
