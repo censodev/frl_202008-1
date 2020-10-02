@@ -143,7 +143,7 @@ class LandingPageController extends Controller
             ]);
         }
         if($type == 'table'){
-            $items = $request->table_editor;
+            $items = array_values(array_filter($request->table_editor, function($value) { return !is_null($value) && $value !== '';}))[0];
         }
 
         return $items;

@@ -354,7 +354,7 @@
                                                         @include('backend.inc-dashboard.service')
                                                     </div>
                                                     <div class="col-md-12 {{ $type == 'table' ? '' : 'hide' }} table-editor">
-                                                        <textarea class="ckeditor-lfm" name="table_editor" id="" rows="10">
+                                                        <textarea class="ckeditor-lfm" name="table_editor[]" id="" rows="10">
                                                             {!! $table_editor ?? '' !!}
                                                         </textarea>
                                                     </div>
